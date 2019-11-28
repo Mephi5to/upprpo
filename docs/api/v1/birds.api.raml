@@ -1,0 +1,81 @@
+#%RAML 1.0
+title: Birds API
+version: v1
+mediaType: application/json
+types: !include types/index.raml
+resourceTypes:
+  hasOptions:
+    options:
+      displayName: Запросить информацию о ресурсе
+      responses:
+        200:
+          headers:
+            Allow:
+              example: GET,POST,OPTIONS
+/api/v1/birds:
+  displayName: Птицы
+  type: hasOptions
+  get:
+    displayName: Запросить список птиц
+    queryParameters:
+      offset?:
+        description: Позиция, начиная с которой нужно вернуть птиц
+        type: number
+        minimum: 0
+        default: 0
+      limit?:
+        description: Максимальное количество птиц, которое нужно вернуть
+        type: number
+        minimum: 0
+        maximum: 1000
+        default: 100
+      name?:
+        description: Название птицы
+        type: string
+    responses:
+      200:
+        body: BirdInfoList
+      400:
+        description: Некорректные данные запроса
+  /{birdId}:
+    displayName: Птица
+    uriParameters: 
+      birdId:
+        type: string
+        description: Идентификатор птицы
+    /audio:
+      displayName: Аудио-файл записи голоса птицы
+      type: hasOptions
+      get: 
+        displayName: Получить аудио-файл
+        responses: 
+          200: 
+            body: file
+          404:
+            description: Аудио-файл не найден
+    /picture:
+      displayName: Файл с изображением птицы
+      type: hasOptions
+      get:
+        displayName: Получить файл
+        responses: 
+          200:
+            body: file
+          404:
+            description: Файл не найден
+/swagger.json:
+  displayName: Описание API по спецификации swagger 2.0
+  type: hasOptions
+  get:
+    displayName: Получить OAS схему API V1
+    responses:
+      200:
+        description: swagger 2.0 документ, описывающий API V1
+/doc.html:
+  displayName: Описание API в html
+  type: hasOptions
+  get:
+    displayName: Получить документация API V1 в html
+    responses:
+      200:
+        description:  Документация API V1 в html
