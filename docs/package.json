@@ -1,0 +1,17 @@
+{
+    "name": "birds.docs",
+    "version": "1.0.0",
+    "description": "Birds project documentation",
+    "scripts": {
+        "build-api": "mkdir build & raml2html -v --theme raml2html-plain-theme  ./api/v1/birds.api.raml > ./build/birds-api-v1.html",
+        "build-api-scheme": "mkdir build & node ./build-api-scheme > ./build/birds-api-v1.json",
+        "publish-api": "xcopy build\\birds-api-v1.html ..\\src\\api\\docs /Y",
+        "publish-api-scheme": "xcopy build\\birds-api-v1.json ..\\src\\api\\docs /Y"
+    },
+    "dependencies": {
+        "mkdirp": "^0.5.1",
+        "oas-raml-converter": "^1.1.35",
+        "raml2html": "^6.7.0",
+        "raml2html-plain-theme": "^0.1.6"
+    }
+}
