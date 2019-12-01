@@ -20,5 +20,14 @@
         <EmbeddedResource Include="docs\birds-api-v1.json" />
         <EmbeddedResource Include="docs\birds-api-v1.html" />
     </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ClientModels\ClientModels.csproj" />
+      <ProjectReference Include="..\Models\Models.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Converters" />
+    </ItemGroup>
     
 </Project>
