@@ -15,6 +15,14 @@ resourceTypes:
 /api/v1/birds:
   displayName: Птицы
   type: hasOptions
+  post:
+    displayName: Добавить новую птицу
+    body: BirdBuildInfo
+    responses: 
+      200:
+        body: Bird
+      400:
+        description: Некорретные данные запроса
   get:
     displayName: Запросить список птиц
     queryParameters:
@@ -34,7 +42,7 @@ resourceTypes:
         type: string
     responses:
       200:
-        body: BirdInfoList
+        body: BirdsList
       400:
         description: Некорректные данные запроса
   /{birdId}:
@@ -43,26 +51,38 @@ resourceTypes:
       birdId:
         type: string
         description: Идентификатор птицы
-    /audio:
-      displayName: Аудио-файл записи голоса птицы
-      type: hasOptions
-      get: 
-        displayName: Получить аудио-файл
-        responses: 
-          200: 
-            body: file
-          404:
-            description: Аудио-файл не найден
-    /picture:
-      displayName: Файл с изображением птицы
-      type: hasOptions
-      get:
-        displayName: Получить файл
-        responses: 
-          200:
-            body: file
-          404:
-            description: Файл не найден
+    get:
+      displayName: Получить информаицю о птице
+      responses: 
+        200: 
+          body: Bird
+        404:
+          description: Информация о птице не найдена
+/api/v1/files:
+  displayName: Файлы
+  type: hasOptions
+  post:
+    body: FileCreationInfo 
+    displayName: Загрузить файл на сервер
+    responses: 
+      200:
+        description: Идентификатор созданного файла
+        body: FileCreationResultInfo
+      400:
+        description: Данные запроса некорректны
+  /{fileId}:
+    displayName: Файл
+    uriParameters: 
+      fileId:
+        type: string
+        description: Идентификатор файла
+    get: 
+      displayName: Получить файл
+      responses: 
+        200: 
+          body: File
+        404:
+          description: Файл не найден
 /swagger.json:
   displayName: Описание API по спецификации swagger 2.0
   type: hasOptions
