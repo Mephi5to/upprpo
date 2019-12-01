@@ -1,4 +1,4 @@
-﻿namespace ClientModels.Errors
+﻿namespace Birds.ClientModels.Errors
 {
     public static class ServiceErrorCodes
     {

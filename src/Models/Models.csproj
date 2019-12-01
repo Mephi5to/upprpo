@@ -2,6 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp2.1</TargetFramework>
+        <RootNamespace>Birds.Models</RootNamespace>
+        <AssemblyName>Birds.Models</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>

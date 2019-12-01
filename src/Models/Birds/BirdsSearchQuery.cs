@@ -1,4 +1,4 @@
-namespace Models.Birds
+namespace Birds.Models.Birds
 {
     public sealed class BirdsSearchQuery
     {

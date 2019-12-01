@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ClientModels.Birds
+namespace Birds.ClientModels.Birds
 {
     public sealed class BirdsList
     {

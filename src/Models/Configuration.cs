@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Models
+namespace Birds.Models
 {
     public sealed class Configuration
     {

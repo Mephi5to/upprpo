@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Models.Birds
+namespace Birds.Models.Birds
 {
     public sealed class Bird
     {

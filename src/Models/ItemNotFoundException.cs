@@ -1,6 +1,6 @@
 using System;
 
-namespace Models
+namespace Birds.Models
 {
     public sealed class ItemNotFoundException : Exception
     {

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 
-namespace ClientModels.Birds
+namespace Birds.ClientModels.Birds
 {
     public sealed class BatchBirdsBuildInfo
     {
-        private IReadOnlyList<BirdBuildInfo> Items { get; set; }
+        public IReadOnlyList<BirdBuildInfo> Items { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Net;
-using ClientModels.Errors;
+using Birds.ClientModels.Errors;
 
-namespace API.Errors
+namespace Birds.API.Errors
 {
     public static class ServiceErrorResponses
     {

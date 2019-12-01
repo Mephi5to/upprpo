@@ -1,6 +1,6 @@
-namespace Models.Birds
+namespace Birds.Models.Birds
 {
-    public sealed class BirdCreationInfo
+    public sealed class BirdBuildInfo
     {
         public string Name { get; set; }
         

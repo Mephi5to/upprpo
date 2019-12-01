@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace ClientModels.Errors
+namespace Birds.ClientModels.Errors
 {
     public class ServiceErrorResponse
     {

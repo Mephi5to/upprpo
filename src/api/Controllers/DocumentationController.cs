@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Internal;
 
-namespace API.Controllers
+namespace Birds.API.Controllers
 {
     [Route("api/v1")]
     public sealed class DocumentationController : ControllerBase

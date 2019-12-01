@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace Models.Birds.Repository
+namespace Birds.Models.Birds.Repository
 {
     public sealed class BirdsRepository : IBirdsRepository
     {
@@ -39,21 +39,21 @@ namespace Models.Birds.Repository
             return result;
         }
 
-        public async Task<IReadOnlyList<Bird>> CreateBatchAsync(IReadOnlyList<BirdCreationInfo> batchCreationInfos, CancellationToken token)
+        public async Task<IReadOnlyList<Bird>> CreateBatchAsync(IReadOnlyList<BirdBuildInfo> batchBuildInfo, CancellationToken token)
         {
             token.ThrowIfCancellationRequested();
             
-            if (batchCreationInfos == null)
+            if (batchBuildInfo == null)
             {
-                throw new ArgumentNullException(nameof(batchCreationInfos));
+                throw new ArgumentNullException(nameof(batchBuildInfo));
             }
 
-            if (batchCreationInfos.Count == 0)
+            if (batchBuildInfo.Count == 0)
             {
                 return new List<Bird>(0);
             }
             
-            var newBirds = batchCreationInfos.Select(creationInfo => new Bird
+            var newBirds = batchBuildInfo.Select(creationInfo => new Bird
                 {
                     Name = creationInfo.Name,
                     Description = creationInfo.Description,
