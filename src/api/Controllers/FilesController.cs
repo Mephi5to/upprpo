@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Birds.API.Controllers
 {
+    [Route("api/v1/files")]
     public sealed class FilesController : ControllerBase
     {
         private readonly IFilesRepository filesRepository;
@@ -29,20 +30,24 @@ namespace Birds.API.Controllers
             }
 
             var fileId = await filesRepository.CreateAsync(creationInfo.Data, creationInfo.Name, token).ConfigureAwait(false);
-
-            return Ok(new { id = fileId });
+            var creationResult = new FileCreationResultInfo
+            {
+                Id = fileId,
+            };
+            
+            return Ok(creationResult);
         }
 
-        [HttpPost]
+        [HttpGet("{id}", Name = "GetFile")]
         public async Task<IActionResult> GetAsync(string id, CancellationToken token)
         {
             token.ThrowIfCancellationRequested();
 
-            var bytes = await filesRepository.GetAsync(id, token).ConfigureAwait(false);
+            var data = await filesRepository.GetAsync(id, token).ConfigureAwait(false);
 
             var file = new File
             {
-                Bytes = bytes,
+                Data = data,
             };
             
             return Ok(file);

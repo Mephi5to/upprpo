@@ -1,3 +1,6 @@
+using Birds.Models;
+using Birds.Models.Birds.Repository;
+using Birds.Models.Files.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +20,10 @@ namespace Birds.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<Configuration>();
+            services.AddSingleton<IFilesRepository, FilesRepository>();
+            services.AddSingleton<IBirdsRepository, BirdsRepository>();
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

@@ -57,8 +57,8 @@ namespace Birds.Models.Birds.Repository
                 {
                     Name = creationInfo.Name,
                     Description = creationInfo.Description,
-                    AudioDataId = creationInfo.AudioDataId,
-                    ImageDataId = creationInfo.ImageDataId,
+                    AudioFileId = creationInfo.AudioDataId,
+                    ImageFileId = creationInfo.ImageDataId,
                 }).ToList();
             
             await birds.InsertManyAsync(newBirds, cancellationToken: token).ConfigureAwait(false);

@@ -36,8 +36,8 @@ namespace Birds.API.Converters
                 Description = modelBird.Description,
                 Id = modelBird.Id,
                 Name = modelBird.Name,
-                AudioDataId = modelBird.AudioDataId,
-                ImageDataId = modelBird.ImageDataId,
+                AudioFileId = modelBird.AudioFileId,
+                ImageFileId = modelBird.ImageFileId,
             };
 
             return clientBird;

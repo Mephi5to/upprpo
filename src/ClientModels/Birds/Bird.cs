@@ -8,8 +8,8 @@ namespace Birds.ClientModels.Birds
         
         public string Description { get; set; }
         
-        public string AudioDataId { get; set; }
+        public string AudioFileId { get; set; }
         
-        public string ImageDataId { get; set; }
+        public string ImageFileId { get; set; }
     }
 }

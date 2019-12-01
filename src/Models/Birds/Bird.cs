@@ -16,10 +16,10 @@ namespace Birds.Models.Birds
         [BsonElement("Description")]
         public string Description { get; set; }
         
-        [BsonElement("AudioDataId")]
-        public string AudioDataId { get; set; }
+        [BsonElement("AudioFileId")]
+        public string AudioFileId { get; set; }
         
-        [BsonElement("ImageDataId")]
-        public string ImageDataId { get; set; }
+        [BsonElement("ImageFileId")]
+        public string ImageFileId { get; set; }
     }
 }
