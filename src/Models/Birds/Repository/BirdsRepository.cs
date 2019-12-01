@@ -1,0 +1,99 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using MongoDB.Bson;
+using MongoDB.Driver;
+
+namespace Models.Birds.Repository
+{
+    public sealed class BirdsRepository : IBirdsRepository
+    {
+        private readonly IMongoCollection<Bird> birds;
+
+        public BirdsRepository(Configuration config)
+        {
+            var client = new MongoClient(config.GetConnectionString("BirdsDb"));
+            var database = client.GetDatabase("BirdsDb");
+            this.birds = database.GetCollection<Bird>("Birds");
+        }
+        
+        public async Task<IReadOnlyList<Bird>> SearchAsync(BirdsSearchQuery query, CancellationToken token)
+        {
+            token.ThrowIfCancellationRequested();
+
+            if (query == null)
+            {
+                throw new ArgumentNullException(nameof(query));
+            }
+
+            FilterDefinition<Bird> nameFilter = null;
+
+            if (query.Name != null)
+            {
+                nameFilter = Builders<Bird>.Filter.Regex("Name", new BsonRegularExpression(query.Name));
+            }
+            
+            var result = await birds.Find(nameFilter).Skip(query.Offset).Limit(query.Limit).ToListAsync(token);
+            return result;
+        }
+
+        public async Task<IReadOnlyList<Bird>> CreateBatchAsync(IReadOnlyList<BirdCreationInfo> batchCreationInfos, CancellationToken token)
+        {
+            token.ThrowIfCancellationRequested();
+            
+            if (batchCreationInfos == null)
+            {
+                throw new ArgumentNullException(nameof(batchCreationInfos));
+            }
+
+            if (batchCreationInfos.Count == 0)
+            {
+                return new List<Bird>(0);
+            }
+            
+            var newBirds = batchCreationInfos.Select(creationInfo => new Bird
+                {
+                    Name = creationInfo.Name,
+                    Description = creationInfo.Description,
+                    AudioDataId = creationInfo.AudioDataId,
+                    ImageDataId = creationInfo.ImageDataId,
+                }).ToList();
+            
+            await birds.InsertManyAsync(newBirds, cancellationToken: token).ConfigureAwait(false);
+
+            return newBirds;
+        }
+
+        public async Task<Bird> GetAsync(string id, CancellationToken token)
+        {
+            token.ThrowIfCancellationRequested();
+
+            if (id == null)
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+            
+            var search = await this.birds
+                .FindAsync(it => it.Id == id, cancellationToken:token)
+                .ConfigureAwait(false);
+
+            var bird = search.FirstOrDefault();
+
+            if (bird == null)
+            {
+                throw new ItemNotFoundException("bird", id);
+            }
+            
+            return bird;
+        }
+
+        public async Task RemoveAsync(string id, CancellationToken token)
+        {
+            token.ThrowIfCancellationRequested();
+
+            await this.birds.DeleteOneAsync(it => it.Id == id, token).ConfigureAwait(false);
+        }
+    }
+}
