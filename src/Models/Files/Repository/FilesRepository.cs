@@ -18,16 +18,16 @@ namespace Birds.Models.Files.Repository
             this.files = new GridFSBucket(database);
         }
         
-        public async Task<string> CreateAsync(byte[] imageBytes, string fileName, CancellationToken token)
+        public async Task<string> CreateAsync(byte[] data, string fileName, CancellationToken token)
         {
             token.ThrowIfCancellationRequested();
             
-            if (imageBytes == null)
+            if (data == null)
             {
-                throw new ArgumentNullException(nameof(imageBytes));
+                throw new ArgumentNullException(nameof(data));
             }
 
-            var fileId = await files.UploadFromBytesAsync(fileName, imageBytes, null, token).ConfigureAwait(false);
+            var fileId = await files.UploadFromBytesAsync(fileName, data, null, token).ConfigureAwait(false);
 
             return fileId.ToString();
         }
