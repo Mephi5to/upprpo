@@ -17,8 +17,8 @@ namespace Birds.API.Converters
             {
                 Description = buildInfo.Description,
                 Name = buildInfo.Name,
-                AudioDataId = buildInfo.AudioDataId,
-                ImageDataId = buildInfo.ImageDataId,
+                AudioFileId = buildInfo.AudioFileId,
+                ImageFileId = buildInfo.ImageFileId,
             };
 
             return modelBuildInfo;
@@ -41,6 +41,19 @@ namespace Birds.API.Converters
             };
 
             return clientBird;
+        }
+
+        public static Model.BirdsSearchQuery Convert(ClientModel.BirdsSearchQuery clientSearchQuery)
+        {
+            var offset = clientSearchQuery?.Offset ?? 0;
+            var limit = clientSearchQuery?.Limit ?? 100;
+            
+            var modelSearchQuery = new Model.BirdsSearchQuery(offset, limit)
+            {
+                Name = clientSearchQuery?.Name,
+            };
+
+            return modelSearchQuery;
         }
     }
 }

@@ -16,11 +16,11 @@ resourceTypes:
   displayName: Птицы
   type: hasOptions
   post:
-    displayName: Добавить новую птицу
-    body: BirdBuildInfo
+    displayName: Добавить список новых птиц
+    body: BatchBirdsBuildInfo
     responses: 
       200:
-        body: Bird
+        body: BirdsList
       400:
         description: Некорретные данные запроса
   get:
@@ -83,7 +83,7 @@ resourceTypes:
           body: File
         404:
           description: Файл не найден
-/swagger.json:
+/api/v1/swagger.json:
   displayName: Описание API по спецификации swagger 2.0
   type: hasOptions
   get:
@@ -91,7 +91,7 @@ resourceTypes:
     responses:
       200:
         description: swagger 2.0 документ, описывающий API V1
-/doc.html:
+/api/v1/doc.html:
   displayName: Описание API в html
   type: hasOptions
   get:

@@ -50,7 +50,7 @@ namespace Birds.API.Controllers
                     return;
                 }
 
-                v1SchemeContent = await GetManifestResourceAsync("API.docs.birds-api-v1.json").ConfigureAwait(false);
+                v1SchemeContent = await GetManifestResourceAsync("Birds.API.docs.birds-api-v1.json").ConfigureAwait(false);
             }
         }
 
@@ -63,7 +63,7 @@ namespace Birds.API.Controllers
                     return;
                 }
 
-                htmlDocContent = await GetManifestResourceAsync("API.docs.birds-api-v1.html").ConfigureAwait(false);
+                htmlDocContent = await GetManifestResourceAsync("Birds.API.docs.birds-api-v1.html").ConfigureAwait(false);
             }
         }
 

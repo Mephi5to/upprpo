@@ -16,10 +16,10 @@ namespace Birds.ClientModels.Birds
         
         [DataMember(IsRequired = true)]
         [Required(AllowEmptyStrings = false)]
-        public string AudioDataId { get; set; }
+        public string AudioFileId { get; set; }
         
         [DataMember(IsRequired = true)]
         [Required(AllowEmptyStrings = false)]
-        public string ImageDataId { get; set; }
+        public string ImageFileId { get; set; }
     }
 }

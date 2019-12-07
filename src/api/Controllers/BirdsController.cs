@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Birds.API.Controllers
 {
+    [Route("api/v1/birds")]
     public sealed class BirdsController : ControllerBase
     {
         private readonly IBirdsRepository birdsRepository;
@@ -41,6 +42,24 @@ namespace Birds.API.Controllers
             };
             
             return this.Ok(viewBirdList);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> SearchAsync(
+            [FromQuery] BirdsSearchQuery searchQuery,
+            CancellationToken token)
+        {
+            token.ThrowIfCancellationRequested();
+
+            var modelSearchQuery = BirdsConverter.Convert(searchQuery);
+            var modelBirds = await this.birdsRepository.SearchAsync(modelSearchQuery, token).ConfigureAwait(false);
+
+            var viewBirdsList = new BirdsList
+            {
+                Birds = modelBirds.Select(BirdsConverter.Convert).ToList(),
+            };
+
+            return this.Ok(viewBirdsList);
         }
     }
 }

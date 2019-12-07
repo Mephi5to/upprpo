@@ -28,7 +28,7 @@ namespace Birds.Models.Birds.Repository
                 throw new ArgumentNullException(nameof(query));
             }
 
-            FilterDefinition<Bird> nameFilter = null;
+            var nameFilter = Builders<Bird>.Filter.Empty;
 
             if (query.Name != null)
             {
@@ -57,8 +57,8 @@ namespace Birds.Models.Birds.Repository
                 {
                     Name = creationInfo.Name,
                     Description = creationInfo.Description,
-                    AudioFileId = creationInfo.AudioDataId,
-                    ImageFileId = creationInfo.ImageDataId,
+                    AudioFileId = creationInfo.AudioFileId,
+                    ImageFileId = creationInfo.ImageFileId,
                 }).ToList();
             
             await birds.InsertManyAsync(newBirds, cancellationToken: token).ConfigureAwait(false);
