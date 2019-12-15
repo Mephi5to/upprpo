@@ -24,7 +24,7 @@ namespace Birds.API.Controllers
                 await InitV1SchemeContentAsync().ConfigureAwait(false);
             }
 
-            var response = this.CreateContentResponse(v1SchemeContent, "application/json");
+            var response = CreateContentResponse(v1SchemeContent, "application/json");
             return response;
         }
 
@@ -37,7 +37,7 @@ namespace Birds.API.Controllers
                 await InitHtmlDocContentAsync().ConfigureAwait(false);
             }
 
-            var response = this.CreateContentResponse(htmlDocContent, "text/html");
+            var response = CreateContentResponse(htmlDocContent, "text/html");
             return response;
         }
 
@@ -88,7 +88,7 @@ namespace Birds.API.Controllers
             return result;
         }
 
-        private HttpResponseMessage CreateContentResponse(byte[] content, string contentType)
+        private static HttpResponseMessage CreateContentResponse(byte[] content, string contentType)
         {
             var response = new HttpResponseMessage
             {
