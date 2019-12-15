@@ -1,0 +1,374 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Birds API",
+    "version": "v1"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "definitions": {
+    "BirdBuildInfo": {
+      "title": "BirdBuildInfo",
+      "description": "Информация о птице",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Название птицы",
+          "type": "string"
+        },
+        "description": {
+          "description": "Описание птицы",
+          "type": "string"
+        },
+        "imageFileId": {
+          "description": "Идентификатор файла с изображением птицы",
+          "type": "string"
+        },
+        "audioFileId": {
+          "description": "Идентификатор файла с записью голоса птицы",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "imageFileId",
+        "audioFileId"
+      ]
+    },
+    "BirdsList": {
+      "title": "BirdsList",
+      "description": "Список птиц",
+      "type": "object",
+      "properties": {
+        "birds": {
+          "description": "Птицы",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Bird"
+          }
+        }
+      },
+      "required": [
+        "birds"
+      ]
+    },
+    "Bird": {
+      "title": "Bird",
+      "description": "Информация о птице",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Идентификатор птицы",
+          "type": "string"
+        },
+        "name": {
+          "description": "Название птицы",
+          "type": "string"
+        },
+        "description": {
+          "description": "Описание птицы",
+          "type": "string"
+        },
+        "imageFileId": {
+          "description": "Идентификатор файла с изображением птицы",
+          "type": "string"
+        },
+        "audioFileId": {
+          "description": "Идентификатор файла с записью голоса птицы",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description",
+        "imageFileId",
+        "audioFileId"
+      ]
+    },
+    "BatchBirdsBuildInfo": {
+      "title": "BatchBirdsBuildInfo",
+      "description": "Список данных о птицах",
+      "type": "object",
+      "properties": {
+        "items": {
+          "description": "Данные о птицах",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BirdBuildInfo"
+          }
+        }
+      },
+      "required": [
+        "items"
+      ]
+    },
+    "FileCreationResultInfo": {
+      "title": "FileCreationResultInfo",
+      "description": "Информация о созданном файле",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Идентификатор файла",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "FileCreationInfo": {
+      "title": "FileCreationInfo",
+      "description": "Информация для создания файла",
+      "type": "object",
+      "properties": {
+        "Name": {
+          "description": "Название файла",
+          "type": "string"
+        },
+        "Data": {
+          "description": "Бинарные данные",
+          "type": "array"
+        }
+      },
+      "required": [
+        "Name",
+        "Data"
+      ]
+    },
+    "File": {
+      "title": "File",
+      "description": "Информация о созданном файле",
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "Бинарные данные",
+          "type": "array"
+        }
+      },
+      "required": [
+        "data"
+      ]
+    }
+  },
+  "paths": {
+    "/api/v1/birds": {
+      "post": {
+        "operationId": "Добавить список новых птиц",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BirdsList"
+            }
+          },
+          "400": {
+            "description": "Некорретные данные запроса"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/BatchBirdsBuildInfo"
+            },
+            "in": "body",
+            "name": "body",
+            "required": true
+          }
+        ]
+      },
+      "get": {
+        "operationId": "Запросить список птиц",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BirdsList"
+            }
+          },
+          "400": {
+            "description": "Некорректные данные запроса"
+          }
+        },
+        "parameters": [
+          {
+            "default": 0,
+            "minimum": 0,
+            "description": "Позиция, начиная с которой нужно вернуть птиц",
+            "type": "number",
+            "in": "query",
+            "name": "offset"
+          },
+          {
+            "default": 100,
+            "minimum": 0,
+            "maximum": 1000,
+            "description": "Максимальное количество птиц, которое нужно вернуть",
+            "type": "number",
+            "in": "query",
+            "name": "limit"
+          },
+          {
+            "description": "Название птицы",
+            "type": "string",
+            "in": "query",
+            "name": "name"
+          }
+        ]
+      },
+      "options": {
+        "operationId": "Запросить информацию о ресурсе",
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Allow": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/birds/{birdId}": {
+      "get": {
+        "operationId": "Получить информаицю о птице",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Bird"
+            }
+          },
+          "404": {
+            "description": "Информация о птице не найдена"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "description": "Идентификатор птицы",
+          "type": "string",
+          "in": "path",
+          "name": "birdId",
+          "required": true
+        }
+      ]
+    },
+    "/api/v1/files": {
+      "post": {
+        "operationId": "Загрузить файл на сервер",
+        "responses": {
+          "200": {
+            "description": "Идентификатор созданного файла",
+            "schema": {
+              "$ref": "#/definitions/FileCreationResultInfo"
+            }
+          },
+          "400": {
+            "description": "Данные запроса некорректны"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/FileCreationInfo"
+            },
+            "in": "body",
+            "name": "body",
+            "required": true
+          }
+        ]
+      },
+      "options": {
+        "operationId": "Запросить информацию о ресурсе",
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Allow": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/files/{fileId}": {
+      "get": {
+        "operationId": "Получить файл",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/File"
+            }
+          },
+          "404": {
+            "description": "Файл не найден"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "description": "Идентификатор файла",
+          "type": "string",
+          "in": "path",
+          "name": "fileId",
+          "required": true
+        }
+      ]
+    },
+    "/api/v1/swagger.json": {
+      "get": {
+        "operationId": "Получить OAS схему API V1",
+        "responses": {
+          "200": {
+            "description": "swagger 2.0 документ, описывающий API V1"
+          }
+        }
+      },
+      "options": {
+        "operationId": "Запросить информацию о ресурсе",
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Allow": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/doc.html": {
+      "get": {
+        "operationId": "Получить документация API V1 в html",
+        "responses": {
+          "200": {
+            "description": "Документация API V1 в html"
+          }
+        }
+      },
+      "options": {
+        "operationId": "Запросить информацию о ресурсе",
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Allow": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

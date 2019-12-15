@@ -1,0 +1,164 @@
+<!DOCTYPE HTML><html><head><title>Birds API</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/raml2html/raml2html 6.7.0"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 15px;
+    line-height: 1.5em;
+    color: #24292e;
+  }
+
+  p {
+    margin: 1em 0;
+  }
+
+  h1, h2, h3, h4, h5 {
+    margin-top: 2em;
+    margin-bottom: 1em;
+    font-weight: bold;
+  }
+
+  h1 {
+    font-size: 2em;
+    margin-bottom: 1.5em;
+  }
+
+  h2 {
+    font-size: 1.6em;
+    margin-bottom: 1em;
+  }
+
+  h3 {
+    font-size: 1.4em;
+    font-weight: bold;
+  }
+
+  h4, h5 {
+    font-weight: normal;
+    margin: 1em 0;
+  }
+
+  h4 {
+    font-size: 1.4em;
+  }
+
+  h5 {
+    font-size: 1em;
+    font-weight: bold;
+  }
+
+  ul {
+    list-style-type: disc;
+    padding-left: 2em;
+  }
+
+  ul.toc ul {
+    padding-top: 0.5em;
+  }
+
+  ul li {
+    margin-bottom: 0.5em;
+  }
+
+  ul li p {
+    margin: 0 0 1em 0;
+  }
+
+  a {
+    color: #0366d6;
+    text-decoration: none;
+  }
+
+  a:hover,
+  a:focus {
+    text-decoration: underline;
+  }
+
+  h5 a,
+  h5 a:focus,
+  h5 a:hover {
+    text-decoration: none;
+    border-bottom: 1px dashed #428bca;
+  }
+
+  table {
+    margin-bottom: 20px;
+  }
+
+  table th,
+  table td {
+    padding: 8px;
+    line-height: 20px;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+  }
+
+  table th {
+    font-weight: bold;
+  }
+
+  table thead th {
+    vertical-align: bottom;
+  }
+
+  table thead:first-child tr:first-child th {
+    border-top: 0;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  .resource-body {
+    padding: 0.5em 2em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: none;
+  }
+
+  pre {
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    padding: 1em;
+    margin: 1em 0;
+    overflow: auto;
+  }
+
+  pre code {
+    padding: 0;
+  }
+
+  code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    padding: 0.2em;
+    background-color: #f8f8f8;
+  }
+
+  .container {
+    margin-right: auto;
+    margin-left: auto;
+    text-align: justify;
+    margin-bottom: 50px;
+    padding: 0 20px;
+  }
+
+
+  @media (min-width:768px) {
+    .container {
+      width: 750px;
+    }
+  }
+
+  @media (min-width:992px) {
+    .container {
+      width: 950px;
+    }
+  }
+
+  @media (min-width:1200px) {
+    .container {
+      width: 1000px;
+    }
+  </style></head><body><div class="container"><h1>Birds API (v1)</h1><p></p><ul></ul><h2>Table of contents</h2><ul class="toc"><li><a href="#api_v1_birds">Птицы</a><ul><li><a href="#api_v1_birds_post">Добавить список новых птиц</a></li><li><a href="#api_v1_birds_get">Запросить список птиц</a></li><li><a href="#api_v1_birds_options">Запросить информацию о ресурсе</a></li><li><a href="#api_v1_birds__birdid__get">Получить информаицю о птице</a></li></ul></li><li><a href="#api_v1_files">Файлы</a><ul><li><a href="#api_v1_files_post">Загрузить файл на сервер</a></li><li><a href="#api_v1_files_options">Запросить информацию о ресурсе</a></li><li><a href="#api_v1_files__fileid__get">Получить файл</a></li></ul></li><li><a href="#api_v1_swagger_json">Описание API по спецификации swagger 2.0</a><ul><li><a href="#api_v1_swagger_json_get">Получить OAS схему API V1</a></li><li><a href="#api_v1_swagger_json_options">Запросить информацию о ресурсе</a></li></ul></li><li><a href="#api_v1_doc_html">Описание API в html</a><ul><li><a href="#api_v1_doc_html_get">Получить документация API V1 в html</a></li><li><a href="#api_v1_doc_html_options">Запросить информацию о ресурсе</a></li></ul></li></ul><h2 id="api_v1_birds" class="panel-title">Птицы</h2><div class="resource"><div id="api_v1_birds_post"><h3>Добавить список новых птиц</h3><pre><code>POST /api/v1/birds</code></pre><div><div id="api_v1_birds_post_request"><h5><a href="#" onclick="$('#api_v1_birds_post_request_body').toggle(); return false">Body</a></h5><div class="resource-body" id="api_v1_birds_post_request_body"><p><strong>Media type</strong>: application/json</p><p><strong>Properties:</strong></p><div><ul><li><strong>items</strong>: <em>required (array of BirdBuildInfo)</em><p>Данные о птицах</p><div class="items"><ul><li><strong>name</strong>: <em>required (string)</em><p>Название птицы</p></li><li><strong>description</strong>: <em>required (string)</em><p>Описание птицы</p></li><li><strong>imageFileId</strong>: <em>required (string)</em><p>Идентификатор файла с изображением птицы</p></li><li><strong>audioFileId</strong>: <em>required (string)</em><p>Идентификатор файла с записью голоса птицы</p></li></ul></div></li></ul></div></div></div><div id="api_v1_birds_post_response"><h4>Response 200</h4><h5><a href="#" onclick="$('#api_v1_birds_post_response_200_body').toggle(); return false">Body</a></h5><div class="resource-body" id="api_v1_birds_post_response_200_body"><p><strong>Media type</strong>: application/json</p><p><strong>Properties:</strong></p><ul><li><strong>birds</strong>: <em>required (array of Bird)</em><p>Птицы</p><div class="items"><ul><li><strong>id</strong>: <em>required (string)</em><p>Идентификатор птицы</p></li><li><strong>name</strong>: <em>required (string)</em><p>Название птицы</p></li><li><strong>description</strong>: <em>required (string)</em><p>Описание птицы</p></li><li><strong>imageFileId</strong>: <em>required (string)</em><p>Идентификатор файла с изображением птицы</p></li><li><strong>audioFileId</strong>: <em>required (string)</em><p>Идентификатор файла с записью голоса птицы</p></li></ul></div></li></ul></div><h4>Response 400</h4><p>Некорретные данные запроса</p></div></div></div><div id="api_v1_birds_get"><h3>Запросить список птиц</h3><pre><code>GET /api/v1/birds</code></pre><div><div id="api_v1_birds_get_request"><h5>Query Parameters</h5><ul><li><strong>offset</strong>: <em>(number - default: 0 - minimum: 0)</em><p>Позиция, начиная с которой нужно вернуть птиц</p></li><li><strong>limit</strong>: <em>(number - default: 100 - minimum: 0 - maximum: 1000)</em><p>Максимальное количество птиц, которое нужно вернуть</p></li><li><strong>name</strong>: <em>(string)</em><p>Название птицы</p></li></ul></div><div id="api_v1_birds_get_response"><h4>Response 200</h4><h5><a href="#" onclick="$('#api_v1_birds_get_response_200_body').toggle(); return false">Body</a></h5><div class="resource-body" id="api_v1_birds_get_response_200_body"><p><strong>Media type</strong>: application/json</p><p><strong>Properties:</strong></p><ul><li><strong>birds</strong>: <em>required (array of Bird)</em><p>Птицы</p><div class="items"><ul><li><strong>id</strong>: <em>required (string)</em><p>Идентификатор птицы</p></li><li><strong>name</strong>: <em>required (string)</em><p>Название птицы</p></li><li><strong>description</strong>: <em>required (string)</em><p>Описание птицы</p></li><li><strong>imageFileId</strong>: <em>required (string)</em><p>Идентификатор файла с изображением птицы</p></li><li><strong>audioFileId</strong>: <em>required (string)</em><p>Идентификатор файла с записью голоса птицы</p></li></ul></div></li></ul></div><h4>Response 400</h4><p>Некорректные данные запроса</p></div></div></div><div id="api_v1_birds_options"><h3>Запросить информацию о ресурсе</h3><pre><code>OPTIONS /api/v1/birds</code></pre><div><div id="api_v1_birds_options_response"><h4>Response 200</h4><h5>Headers</h5><ul><li><strong>Allow</strong>: <em>required (string)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>GET,POST,OPTIONS</code></pre></div></li></ul></div></div></div></div><div class="resource"><div id="api_v1_birds__birdid__get"><h3>Получить информаицю о птице</h3><pre><code>GET /api/v1/birds/{birdId}</code></pre><div><div id="api_v1_birds__birdid__get_request"><h5>URI Parameters</h5><ul><li><strong>birdId</strong>: <em>required (string)</em><p>Идентификатор птицы</p></li></ul></div><div id="api_v1_birds__birdid__get_response"><h4>Response 200</h4><h5><a href="#" onclick="$('#api_v1_birds__birdid__get_response_200_body').toggle(); return false">Body</a></h5><div class="resource-body" id="api_v1_birds__birdid__get_response_200_body"><p><strong>Media type</strong>: application/json</p><p><strong>Properties:</strong></p><ul><li><strong>id</strong>: <em>required (string)</em><p>Идентификатор птицы</p></li><li><strong>name</strong>: <em>required (string)</em><p>Название птицы</p></li><li><strong>description</strong>: <em>required (string)</em><p>Описание птицы</p></li><li><strong>imageFileId</strong>: <em>required (string)</em><p>Идентификатор файла с изображением птицы</p></li><li><strong>audioFileId</strong>: <em>required (string)</em><p>Идентификатор файла с записью голоса птицы</p></li></ul></div><h4>Response 404</h4><p>Информация о птице не найдена</p></div></div></div></div><h2 id="api_v1_files" class="panel-title">Файлы</h2><div class="resource"><div id="api_v1_files_post"><h3>Загрузить файл на сервер</h3><pre><code>POST /api/v1/files</code></pre><div><div id="api_v1_files_post_request"><h5><a href="#" onclick="$('#api_v1_files_post_request_body').toggle(); return false">Body</a></h5><div class="resource-body" id="api_v1_files_post_request_body"><p><strong>Media type</strong>: application/json</p><p><strong>Properties:</strong></p><div><ul><li><strong>Name</strong>: <em>required (string)</em><p>Название файла</p></li><li><strong>Data</strong>: <em>required (array of )</em><p>Бинарные данные</p></li></ul></div></div></div><div id="api_v1_files_post_response"><h4>Response 200</h4><p>Идентификатор созданного файла</p><h5><a href="#" onclick="$('#api_v1_files_post_response_200_body').toggle(); return false">Body</a></h5><div class="resource-body" id="api_v1_files_post_response_200_body"><p><strong>Media type</strong>: application/json</p><p><strong>Properties:</strong></p><ul><li><strong>id</strong>: <em>required (string)</em><p>Идентификатор файла</p></li></ul></div><h4>Response 400</h4><p>Данные запроса некорректны</p></div></div></div><div id="api_v1_files_options"><h3>Запросить информацию о ресурсе</h3><pre><code>OPTIONS /api/v1/files</code></pre><div><div id="api_v1_files_options_response"><h4>Response 200</h4><h5>Headers</h5><ul><li><strong>Allow</strong>: <em>required (string)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>GET,POST,OPTIONS</code></pre></div></li></ul></div></div></div></div><div class="resource"><div id="api_v1_files__fileid__get"><h3>Получить файл</h3><pre><code>GET /api/v1/files/{fileId}</code></pre><div><div id="api_v1_files__fileid__get_request"><h5>URI Parameters</h5><ul><li><strong>fileId</strong>: <em>required (string)</em><p>Идентификатор файла</p></li></ul></div><div id="api_v1_files__fileid__get_response"><h4>Response 200</h4><h5><a href="#" onclick="$('#api_v1_files__fileid__get_response_200_body').toggle(); return false">Body</a></h5><div class="resource-body" id="api_v1_files__fileid__get_response_200_body"><p><strong>Media type</strong>: application/json</p><p><strong>Properties:</strong></p><ul><li><strong>data</strong>: <em>required (array of )</em><p>Бинарные данные</p></li></ul></div><h4>Response 404</h4><p>Файл не найден</p></div></div></div></div><h2 id="api_v1_swagger_json" class="panel-title">Описание API по спецификации swagger 2.0</h2><div class="resource"><div id="api_v1_swagger_json_get"><h3>Получить OAS схему API V1</h3><pre><code>GET /api/v1/swagger.json</code></pre><div><div id="api_v1_swagger_json_get_response"><h4>Response 200</h4><p>swagger 2.0 документ, описывающий API V1</p></div></div></div><div id="api_v1_swagger_json_options"><h3>Запросить информацию о ресурсе</h3><pre><code>OPTIONS /api/v1/swagger.json</code></pre><div><div id="api_v1_swagger_json_options_response"><h4>Response 200</h4><h5>Headers</h5><ul><li><strong>Allow</strong>: <em>required (string)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>GET,POST,OPTIONS</code></pre></div></li></ul></div></div></div></div><h2 id="api_v1_doc_html" class="panel-title">Описание API в html</h2><div class="resource"><div id="api_v1_doc_html_get"><h3>Получить документация API V1 в html</h3><pre><code>GET /api/v1/doc.html</code></pre><div><div id="api_v1_doc_html_get_response"><h4>Response 200</h4><p>Документация API V1 в html</p></div></div></div><div id="api_v1_doc_html_options"><h3>Запросить информацию о ресурсе</h3><pre><code>OPTIONS /api/v1/doc.html</code></pre><div><div id="api_v1_doc_html_options_response"><h4>Response 200</h4><h5>Headers</h5><ul><li><strong>Allow</strong>: <em>required (string)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>GET,POST,OPTIONS</code></pre></div></li></ul></div></div></div></div></div></body></html>

@@ -33,12 +33,8 @@ Thumbs.db
 Desktop.ini
 .DS_Store
 .idea/
-*.sln
 src/API/obj/
 src/API/bin/
 src/API/wwwroot/
-src/API/Properties/
-src/API/*.json
 src/API/*.csproj
-src/API/*.json
-src/API/docs
+
