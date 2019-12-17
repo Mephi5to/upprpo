@@ -71,9 +71,25 @@ namespace Client.BirdsClient
             return birdList;
         }
 
-        public Task<FileCreationResultInfo> CreateAsync(FileCreationInfo creationInfo, CancellationToken token)
+        public async Task<FileCreationResultInfo> CreateAsync(FileCreationInfo creationInfo, CancellationToken token)
         {
-            throw new NotImplementedException();
+            if (creationInfo == null)
+            {
+                throw new ArgumentException(nameof(creationInfo));
+            }
+            
+            token.ThrowIfCancellationRequested();
+
+            var content = JsonConvert.SerializeObject(creationInfo);
+            var requestContent = new StringContent(content);
+            var requestUri = "api/v1/files";
+            var createResult = await httpClient.PostAsync(requestUri, requestContent, token).ConfigureAwait(false);
+            createResult.EnsureSuccessStatusCode();
+            
+            var responseContent = await createResult.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var fileCreationResultInfo = JsonConvert.DeserializeObject<FileCreationResultInfo>(responseContent);
+
+            return fileCreationResultInfo;
         }
 
         public Task<File> GetAsync(string id, CancellationToken token)
