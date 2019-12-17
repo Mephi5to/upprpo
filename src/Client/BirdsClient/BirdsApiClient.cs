@@ -41,7 +41,7 @@ namespace Client.BirdsClient
 
             var requestUti = builder.ToString();
 
-            var searchResult = await httpClient.PostAsync(requestUti, null, token).ConfigureAwait(false);
+            var searchResult = await httpClient.GetAsync(requestUti, token).ConfigureAwait(false);
             searchResult.EnsureSuccessStatusCode();
 
             var responseContent = await searchResult.Content.ReadAsStringAsync().ConfigureAwait(false);
@@ -92,9 +92,22 @@ namespace Client.BirdsClient
             return fileCreationResultInfo;
         }
 
-        public Task<File> GetAsync(string id, CancellationToken token)
+        public async Task<File> GetAsync(string id, CancellationToken token)
         {
-            throw new NotImplementedException();
+            if (id == null)
+            {
+                throw new ArgumentException(nameof(id));
+            }
+
+            var requestUri = "api/v1/files";
+
+            var getResult = await httpClient.GetAsync(requestUri, token).ConfigureAwait(false);
+            getResult.EnsureSuccessStatusCode();
+
+            var responseContent = await getResult.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var file = JsonConvert.DeserializeObject<File>(responseContent);
+
+            return file;
         }
     }
 }
