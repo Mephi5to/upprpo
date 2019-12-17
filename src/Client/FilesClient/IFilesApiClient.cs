@@ -7,5 +7,6 @@ namespace Client.FilesClient
 {
     public interface IFilesApiClient
     {
+        Task<BirdsList> CreateAsync(ClientModels.FileCreationInfo creationInfo, CancellationToken token);
     }
 }
