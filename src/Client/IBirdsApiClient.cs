@@ -4,7 +4,7 @@ using Birds.ClientModels.Birds;
 using ClientBirdsModels = Birds.ClientModels.Birds;
 using ClientFilesModels = Birds.ClientModels.Files;
 
-namespace Client.BirdsClient
+namespace Client
 {
     public interface IBirdsApiClient
     {

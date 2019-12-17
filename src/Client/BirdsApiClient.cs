@@ -7,7 +7,7 @@ using Birds.ClientModels.Birds;
 using Birds.ClientModels.Files;
 using Newtonsoft.Json;
 
-namespace Client.BirdsClient
+namespace Client
 {
     public sealed class BirdsApiClient : IBirdsApiClient
     {
