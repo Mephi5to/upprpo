@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -41,16 +42,16 @@ namespace Client
 
             var requestUti = builder.ToString();
 
-            var result = await httpClient.PostAsync(requestUti, null, token).ConfigureAwait(false);
-            result.EnsureSuccessStatusCode();
+            var searchResult = await httpClient.PostAsync(requestUti, null, token).ConfigureAwait(false);
+            searchResult.EnsureSuccessStatusCode();
 
-            var responseContent = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var responseContent = await searchResult.Content.ReadAsStringAsync().ConfigureAwait(false);
             var birdList = JsonConvert.DeserializeObject<BirdsList>(responseContent);
 
             return birdList;
         }
 
-        public Task<BirdsList> CreateBatchAsync(BatchBirdsBuildInfo batchBuildInfo, CancellationToken token)
+        public async Task<BirdsList> CreateBatchAsync(BatchBirdsBuildInfo batchBuildInfo, CancellationToken token)
         {
             if (batchBuildInfo == null)
             {
@@ -58,7 +59,17 @@ namespace Client
             }
             
             token.ThrowIfCancellationRequested();
+
+            var content = JsonConvert.SerializeObject(batchBuildInfo);
+            var requestContent = new StringContent(content);
+            var requestUri = "api/v1/birds";
+            var createResult = await httpClient.PostAsync(requestUri, requestContent, token).ConfigureAwait(false);
+            createResult.EnsureSuccessStatusCode();
             
+            var responseContent = await createResult.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var birdList = JsonConvert.DeserializeObject<BirdsList>(responseContent);
+
+            return birdList;
         }
     }
 }
