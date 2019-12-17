@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
@@ -19,6 +20,13 @@ namespace Client
         
         public async Task<BirdsList> SearchRequestsAsync(BirdsSearchQuery query, CancellationToken token)
         {
+            if (query == null)
+            {
+                throw new ArgumentNullException(nameof(query));
+            }
+            
+            token.ThrowIfCancellationRequested();
+            
             var limit = query.Limit;
             var offset = query.Offset;
             var name = query.Name;
@@ -44,7 +52,13 @@ namespace Client
 
         public Task<BirdsList> CreateBatchAsync(BatchBirdsBuildInfo batchBuildInfo, CancellationToken token)
         {
-            throw new System.NotImplementedException();
+            if (batchBuildInfo == null)
+            {
+                throw new ArgumentException(nameof(batchBuildInfo));
+            }
+            
+            token.ThrowIfCancellationRequested();
+            
         }
     }
 }
