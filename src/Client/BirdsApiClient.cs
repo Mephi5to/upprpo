@@ -10,5 +10,7 @@ namespace Client
         {
             this.httpClient = httpClient;
         }
+        
+        public 
     }
 }
