@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Birds.ClientModels.Birds;
+using Birds.ClientModels.Files;
 using Newtonsoft.Json;
 
 namespace Client.BirdsClient
@@ -68,6 +69,16 @@ namespace Client.BirdsClient
             var birdList = JsonConvert.DeserializeObject<BirdsList>(responseContent);
 
             return birdList;
+        }
+
+        public Task<FileCreationResultInfo> CreateAsync(FileCreationInfo creationInfo, CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<File> GetAsync(string id, CancellationToken token)
+        {
+            throw new NotImplementedException();
         }
     }
 }
