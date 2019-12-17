@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Birds.ClientModels.Birds;
 using ClientModels = Birds.ClientModels.Birds;
 
-namespace Client
+namespace Client.BirdsClient
 {
     public interface IBirdsApiClient
     {
