@@ -2,7 +2,7 @@ using System.Net.Http;
 
 namespace Client
 {
-    public sealed class BirdsApiClient
+    public sealed class BirdsApiClient : IBirdsApiClient
     {
         private readonly HttpClient httpClient;
 
