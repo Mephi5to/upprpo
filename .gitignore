@@ -38,3 +38,6 @@ src/API/bin/
 src/API/wwwroot/
 src/API/*.csproj
 
+**/node_modules/
+**/.idea/
+
