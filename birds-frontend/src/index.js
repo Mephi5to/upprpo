@@ -14,6 +14,7 @@ class App extends React.Component {
     }
 
     render() {
+        window.scrollTo(0, -100);
         return <div>
             <Body
                 birdsListProps={this.state.birdsList}

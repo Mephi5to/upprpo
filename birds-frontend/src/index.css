@@ -9,6 +9,7 @@ body {
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow: hidden;
 }
 
 .background {
@@ -124,7 +125,7 @@ body {
     z-index: 9998;
     position: absolute;
     width: 100%;
-    height: 2000px;
+    height: 2500px;
     top: 0;
     left: 0;
     background: rgba(0, 0, 0, 0.6);
