@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Birds.ClientModels.Birds;
 using Newtonsoft.Json;
@@ -33,6 +34,22 @@ namespace FilesTool
             }
             
             Console.WriteLine(response.StatusCode);
+        }
+        
+        private static async Task UploadFilesToServer(string directoryPath, CancellationToken token)
+        {
+            token.ThrowIfCancellationRequested();
+            
+            var dirInfo = new DirectoryInfo(directoryPath);
+            
+            foreach (var file in dirInfo.GetFiles())
+            {
+                var name = file.Name;
+                Console.Write(name + "  ");
+                var content = System.IO.File.ReadAllBytes(file.FullName);
+                var fileId = await CreateFile(name, content, token).ConfigureAwait(false);
+                Console.WriteLine(fileId);
+            }
         }
     }
 }
