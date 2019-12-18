@@ -37,4 +37,5 @@ src/API/obj/
 src/API/bin/
 src/API/wwwroot/
 src/API/*.csproj
+src/FilesTool/*.json
 
