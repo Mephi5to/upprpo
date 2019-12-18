@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 const Item = (props) => {
 
     return <div onClick={() => {
         props.setSelectedBirdFunc(props.bird);
+        props.setModalIsOpenFunc(true);
     }} className="item">
         <div className="horizont_float">
             <ItemImage imageUrl={props.bird.imageUrl}></ItemImage>
