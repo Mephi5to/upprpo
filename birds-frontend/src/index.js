@@ -5,6 +5,7 @@ import store from './store'
 import Item from "./item";
 import Modal from './modal/modal'
 import ModalBackground from "./modal/modal_background";
+import axios from 'axios';
 
 class App extends React.Component {
 
@@ -37,6 +38,22 @@ class App extends React.Component {
         </div>
     };
 
+    componentDidMount() {
+        axios({
+            method: 'get',
+            // url: `http://127.0.0.1:8080/cached/organizer/1`,
+            url: `http://127.0.0.1:5000/api/v1/birds`,
+            // url: `http://10.0.2.2:5000/api/v1/birds`,
+            responseType: 'json'
+        })
+            .then(res => {
+                debugger;
+            })
+            .catch(res => {
+                debugger;
+            })
+    }
+
     setModalIsOpen = (value) => {
         this.setState({
             modalIsOpen: value
@@ -61,8 +78,6 @@ const Body = (props) => {
         }
     </div>
 };
-
-
 
 
 ReactDOM.render(<App/>, document.getElementById('root'));

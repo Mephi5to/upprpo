@@ -21,7 +21,6 @@ class ModalBackground extends React.Component {
 
     close(e) {
         e.preventDefault();
-        debugger;
         if (this.props.onClose) {
             this.props.onClose();
         }
