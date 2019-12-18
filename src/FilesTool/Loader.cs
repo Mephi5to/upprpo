@@ -17,12 +17,8 @@ namespace FilesTool
         private const string imagesDirectoryPath = "D:\\NSU\\УППРПО\\Images";
         private const string soundsDirectoryPath = "D:\\NSU\\УППРПО\\Sounds";
         private const string birdsData = "bird_data.json";
-
-        public static async Task Upload()
-        {
-        }
-
-        private static async Task UploadBirdsToServer()
+        
+        public static async Task UploadBirdsToServer()
         {
             var batchBuildInfo = JsonConvert.DeserializeObject<BatchBirdsBuildInfo>(File.ReadAllText(birdsData));
             var json = JsonConvert.SerializeObject(batchBuildInfo);
@@ -37,7 +33,7 @@ namespace FilesTool
             Console.WriteLine(response.StatusCode);
         }
 
-        private static async Task UploadFilesToServer(string directoryPath, CancellationToken token)
+        public static async Task UploadFilesToServer(string directoryPath, CancellationToken token)
         {
             token.ThrowIfCancellationRequested();
 
