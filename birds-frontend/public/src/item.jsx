@@ -10,6 +10,7 @@ const Item = (props) => {
         </div>
         <div className="item_body">
             <ItemHeader name={props.bird.name}></ItemHeader>
+            <ItemAudio audioUrl={props.bird.audioUrl}></ItemAudio>
         </div>
     </div>
 };
@@ -22,6 +23,14 @@ const ItemHeader = (props) => {
 
 const ItemImage = (props) => {
     return <img className="image" src={props.imageUrl}/>
+}
+
+const ItemAudio = (props) => {
+    return <div className="audio_item">
+        <audio controls className="audio">
+            <source src={props.audioUrl}/>
+        </audio>
+    </div>
 }
 
 export default Item;

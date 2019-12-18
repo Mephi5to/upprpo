@@ -55,3 +55,19 @@ body {
 .image {
     width: 110px;
 }
+
+.audio {
+    width: 900px;
+    height: 40px;
+    vertical-align: bottom;
+    display: inline-block;
+    outline: none;
+}
+
+.audio_item {
+    vertical-align: bottom;
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 16px;
+}
