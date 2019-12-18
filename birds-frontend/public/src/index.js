@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import store from './store'
 import Item from "./item";
+import Modal from './modal/modal'
 
 class App extends React.Component {
 
@@ -15,16 +16,30 @@ class App extends React.Component {
         return <div>
             <Body
                 birdsListProps={this.state.birdsList}
-                setSelectedBirdFunc={this.setSelectedBird}>
+                setSelectedBirdFunc={this.setSelectedBird}
+                setModalIsOpenFunc={this.setModalIsOpen}>
             </Body>
+            <Modal
+                isOpen={this.state.modalIsOpen}
+                onClose={() => this.setState({
+                    modalIsOpen: false
+                })}
+                bird={this.state.selectedBird}>
+            </Modal>
         </div>
-    }
+    };
+
+    setModalIsOpen = (value) => {
+        this.setState({
+            modalIsOpen: value
+        })
+    };
 
     setSelectedBird = (bird) => {
         this.setState({
             selectedBird: bird
         })
-    }
+    };
 }
 
 const Body = (props) => {
@@ -32,7 +47,8 @@ const Body = (props) => {
         {props.birdsListProps.map((bird) =>
             <Item
                 bird={bird}
-                setSelectedBirdFunc={props.setSelectedBirdFunc}>
+                setSelectedBirdFunc={props.setSelectedBirdFunc}
+                setModalIsOpenFunc={props.setModalIsOpenFunc}>
             </Item>)
         }
     </div>
