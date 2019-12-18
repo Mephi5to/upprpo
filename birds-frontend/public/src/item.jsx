@@ -6,6 +6,7 @@ const Item = (props) => {
         props.setSelectedBirdFunc(props.bird);
     }} className="item">
         <div className="horizont_float">
+            <ItemImage imageUrl={props.bird.imageUrl}></ItemImage>
         </div>
         <div className="item_body">
             <ItemHeader name={props.bird.name}></ItemHeader>
@@ -18,5 +19,9 @@ const ItemHeader = (props) => {
         <span className="bird_name_text">{props.name}</span>
     </h2>
 };
+
+const ItemImage = (props) => {
+    return <img className="image" src={props.imageUrl}/>
+}
 
 export default Item;
