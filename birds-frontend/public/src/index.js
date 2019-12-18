@@ -4,6 +4,7 @@ import './index.css';
 import store from './store'
 import Item from "./item";
 import Modal from './modal/modal'
+import ModalBackground from "./modal/modal_background";
 
 class App extends React.Component {
 
@@ -26,6 +27,12 @@ class App extends React.Component {
                 })}
                 bird={this.state.selectedBird}>
             </Modal>
+            <ModalBackground
+                isOpen={this.state.modalIsOpen}
+                onClose={() => this.setState({
+                    modalIsOpen: false
+                })}>
+            </ModalBackground>
         </div>
     };
 
