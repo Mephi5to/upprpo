@@ -1,12 +1,11 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 
 namespace FilesTool
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
         }
     }
 }

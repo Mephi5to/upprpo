@@ -17,6 +17,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ClientModels\ClientModels.csproj" />
+      <ProjectReference Include="..\Client\Client.csproj" />
     </ItemGroup>
 
 </Project>
