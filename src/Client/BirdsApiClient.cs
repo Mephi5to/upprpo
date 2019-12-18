@@ -18,7 +18,7 @@ namespace Client
             this.httpClient = httpClient;
         }
         
-        public async Task<BirdsList> SearchRequestsAsync(BirdsSearchQuery query, CancellationToken token)
+        public async Task<BirdsList> SearchBirdsAsync(BirdsSearchQuery query, CancellationToken token)
         {
             if (query == null)
             {
@@ -50,7 +50,7 @@ namespace Client
             return birdList;
         }
 
-        public async Task<BirdsList> CreateBatchAsync(BatchBirdsBuildInfo batchBuildInfo, CancellationToken token)
+        public async Task<BirdsList> CreateBatchBirdsAsync(BatchBirdsBuildInfo batchBuildInfo, CancellationToken token)
         {
             if (batchBuildInfo == null)
             {
@@ -71,7 +71,7 @@ namespace Client
             return birdList;
         }
 
-        public async Task<FileCreationResultInfo> CreateAsync(FileCreationInfo creationInfo, CancellationToken token)
+        public async Task<FileCreationResultInfo> CreateFileAsync(FileCreationInfo creationInfo, CancellationToken token)
         {
             if (creationInfo == null)
             {
@@ -92,7 +92,7 @@ namespace Client
             return fileCreationResultInfo;
         }
 
-        public async Task<File> GetAsync(string id, CancellationToken token)
+        public async Task<File> GetFileAsync(string id, CancellationToken token)
         {
             if (id == null)
             {
