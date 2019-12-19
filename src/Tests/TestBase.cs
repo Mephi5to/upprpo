@@ -11,7 +11,7 @@
 {
     public class TestBase
     {
-        public static TestCaseData[] CorrectRequestDataSource { get; } =
+        public static TestCaseData[] CorrectBirdsDataSource { get; } =
         {
             new TestCaseData(new BatchBirdsBuildInfo { Items = new List<ClientModels.BirdBuildInfo>()
             {
@@ -20,51 +20,16 @@
             },
             })
         };
+        
+        public static TestCaseData[] CorrectFilesDataSource { get; } =
+        {
+            new TestCaseData("D:\\NSU\\УППРПО\\Images\\Деряба.jpg")
+        };
 
-        // public static TestCaseData[] RequestTypesSource { get; } = new[]
-        // {
-        // };
-        //
-        // public static TestCaseData[] CorrectResultSource { get; } =
-        // {
-        // };
-        //
-        // public static TestCaseData[] SetResultToUnknownRequestTestSource { get; } =
-        // {
-        // };
-        //
-        // public static TestCaseData[] SetResultWithResultPayloadOtherTypeTestSource { get; } =
-        // {
-        //     new TestCaseData(RequestType.Guarantee, RequestType.GuaranteeLine, new GuaranteeData(), new GuaranteeLineResultPayload(1, new GuaranteeLineOption[0])),
-        //     new TestCaseData(RequestType.GuaranteeLine, RequestType.Guarantee, new GuaranteeLineData(), new GuaranteeResultPayload(new GuaranteeOption[0], null, null))
-        // };
-        //
-        // public static TestCaseData[] DoubleSetResultTestSource { get; } = new[]
-        // {
-        //     new TestCaseData(RequestType.Guarantee, new GuaranteeData(), new GuaranteeResultPayload(new GuaranteeOption[0], null, null)),
-        //     new TestCaseData(RequestType.GuaranteeLine, new GuaranteeLineData(), new GuaranteeLineResultPayload(1, new GuaranteeLineOption[0]))
-        // };
-        //
-        // public static TestCaseData[] SearchTestsSource { get; } = new[]
-        // {
-        //     new TestCaseData(
-        //         4,
-        //         new[] { RequestType.Guarantee, RequestType.Guarantee, RequestType.GuaranteeLine, RequestType.GuaranteeLine },
-        //         new IRequestData[] { new GuaranteeData(), new GuaranteeData(), new GuaranteeLineData(), new GuaranteeLineData() },
-        //         new IRequestResultPayload[] { null, new GuaranteeResultPayload(new GuaranteeOption[0], null, null), null, new GuaranteeLineResultPayload(1, new GuaranteeLineOption[0]) })
-        // };
-        //
-        // public static TestCaseData[] RejectTestSource { get; } = new[]
-        // {
-        //     new TestCaseData(RequestType.Guarantee, new GuaranteeData(), "someReason"),
-        //     new TestCaseData(RequestType.GuaranteeLine, new GuaranteeLineData(), "someReason"),
-        // };
-        //
-        // public static TestCaseData[] CancelTestSource { get; } = new[]
-        // {
-        //     new TestCaseData(RequestType.Guarantee, new GuaranteeData()),
-        //     new TestCaseData(RequestType.GuaranteeLine, new GuaranteeLineData()),
-        // };
+        public static TestCaseData[] GetFilesDataSource { get; } =
+        {
+            new TestCaseData("5dfbbc085a63c91e7c950b8d")
+        };
 
         protected BirdsRepository BirdsRepository { get; set; }
         protected FilesRepository FilesRepository { get; set; }
