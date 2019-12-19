@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Net.Mime;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,11 +12,12 @@ namespace Client
 {
     public sealed class BirdsApiClient : IBirdsApiClient
     {
+        private const string LocalUrl = "https://localhost:5001";
         private readonly HttpClient httpClient;
 
-        public BirdsApiClient(HttpClient httpClient)
+        public BirdsApiClient()
         {
-            this.httpClient = httpClient;
+            this.httpClient = new HttpClient();
         }
         
         public async Task<BirdsList> SearchBirdsAsync(BirdsSearchQuery query, CancellationToken token)
@@ -32,7 +34,7 @@ namespace Client
             var name = query.Name;
             
             var builder = new StringBuilder();
-            builder.Append($"api/v1/birds?{nameof(limit)}={limit}&{nameof(offset)}={offset}&");
+            builder.Append($"{LocalUrl}/api/v1/birds?{nameof(limit)}={limit}&{nameof(offset)}={offset}&");
 
             if (name != null)
             {
@@ -60,8 +62,8 @@ namespace Client
             token.ThrowIfCancellationRequested();
 
             var content = JsonConvert.SerializeObject(batchBuildInfo);
-            var requestContent = new StringContent(content);
-            var requestUri = "api/v1/birds";
+            var requestContent = new StringContent(content,null, MediaTypeNames.Application.Json);
+            var requestUri = new Uri($"{LocalUrl}/api/v1/birds");
             var createResult = await httpClient.PostAsync(requestUri, requestContent, token).ConfigureAwait(false);
             createResult.EnsureSuccessStatusCode();
             
@@ -82,7 +84,7 @@ namespace Client
 
             var content = JsonConvert.SerializeObject(creationInfo);
             var requestContent = new StringContent(content);
-            var requestUri = "api/v1/files";
+            var requestUri = $"{LocalUrl}/api/v1/files";
             var createResult = await httpClient.PostAsync(requestUri, requestContent, token).ConfigureAwait(false);
             createResult.EnsureSuccessStatusCode();
             
@@ -99,7 +101,7 @@ namespace Client
                 throw new ArgumentException(nameof(id));
             }
 
-            var requestUri = "api/v1/files";
+            var requestUri = $"{LocalUrl}/api/v1/files";
 
             var getResult = await httpClient.GetAsync(requestUri, token).ConfigureAwait(false);
             getResult.EnsureSuccessStatusCode();

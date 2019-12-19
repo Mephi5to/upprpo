@@ -10,7 +10,7 @@ namespace Birds.Models.Files.Repository
     public sealed class FilesRepository : IFilesRepository
     {
         private readonly IGridFSBucket files;
-
+        
         public FilesRepository(Configuration config)
         {
             var client = new MongoClient(config.GetConnectionString("BirdsDb"));

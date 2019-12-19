@@ -10,7 +10,7 @@ namespace Birds.Models.Birds.Repository
 {
     public sealed class BirdsRepository : IBirdsRepository
     {
-        private readonly IMongoCollection<Bird> birds;
+        public readonly IMongoCollection<Bird> birds;
 
         public BirdsRepository(Configuration config)
         {
