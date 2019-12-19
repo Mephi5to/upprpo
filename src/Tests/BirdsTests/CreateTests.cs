@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Birds.ClientModels.Birds;
-using Birds.Models.Birds;
 using NUnit.Framework;
 
 namespace Tests.BirdsTests
@@ -12,7 +9,7 @@ namespace Tests.BirdsTests
     public sealed class CreateTests : TestBase
     {
         [Test]
-        [TestCaseSource(typeof(TestBase), nameof(TestBase.CorrectRequestDataSource))]
+        [TestCaseSource(typeof(TestBase), nameof(TestBase.CorrectBirdsDataSource))]
         public async Task CreateTestAsync(BatchBirdsBuildInfo batchBirdsBuildInfo)
         {
             var result = await this.BirdsApiClient.CreateBatchBirdsAsync(batchBirdsBuildInfo, CancellationToken.None).ConfigureAwait(false);
