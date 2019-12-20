@@ -56,7 +56,7 @@ namespace Client
         {
             if (batchBuildInfo == null)
             {
-                throw new ArgumentException(nameof(batchBuildInfo));
+                throw new ArgumentNullException(nameof(batchBuildInfo));
             }
             
             token.ThrowIfCancellationRequested();
@@ -77,7 +77,7 @@ namespace Client
         {
             if (creationInfo == null)
             {
-                throw new ArgumentException(nameof(creationInfo));
+                throw new ArgumentNullException(nameof(creationInfo));
             }
             
             token.ThrowIfCancellationRequested();
@@ -101,7 +101,7 @@ namespace Client
                 throw new ArgumentException(nameof(id));
             }
 
-            var requestUri = $"{LocalUrl}/api/v1/files";
+            var requestUri = $"{LocalUrl}/api/v1/files/{id}";
 
             var getResult = await httpClient.GetAsync(requestUri, token).ConfigureAwait(false);
             getResult.EnsureSuccessStatusCode();

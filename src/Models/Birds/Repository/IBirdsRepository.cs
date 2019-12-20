@@ -11,7 +11,5 @@ namespace Birds.Models.Birds.Repository
         Task<IReadOnlyList<Bird>> CreateBatchAsync(IReadOnlyList<BirdBuildInfo> batchBuildInfo, CancellationToken token);
 
         Task<Bird> GetAsync(string id, CancellationToken token);
-
-        Task RemoveAsync(string id, CancellationToken token);
     }
 }

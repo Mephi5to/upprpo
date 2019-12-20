@@ -46,13 +46,5 @@ namespace Birds.Models.Files.Repository
             
             return file;
         }
-
-        public async Task RemoveAsync(string id, CancellationToken token)
-        {
-            token.ThrowIfCancellationRequested();
-
-            var objectId = ObjectId.Parse(id);
-            await this.files.DeleteAsync(objectId, token).ConfigureAwait(false);
-        }
     }
 }

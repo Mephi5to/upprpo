@@ -88,12 +88,5 @@ namespace Birds.Models.Birds.Repository
             
             return bird;
         }
-
-        public async Task RemoveAsync(string id, CancellationToken token)
-        {
-            token.ThrowIfCancellationRequested();
-
-            await this.birds.DeleteOneAsync(it => it.Id == id, token).ConfigureAwait(false);
-        }
     }
 }

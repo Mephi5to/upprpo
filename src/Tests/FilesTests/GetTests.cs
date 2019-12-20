@@ -16,5 +16,15 @@ namespace Tests.FilesTests
             Assert.NotNull(result);
             Assert.IsNotEmpty(result.Data);
         }
+        
+        [Test]
+        [TestCaseSource(typeof(TestBase), nameof(TestBase.GetFilesDataSource))]
+        public async Task GetFromRepoTestAsync(string fileId)
+        {
+            var result = await this.FilesRepository.GetAsync(fileId, CancellationToken.None).ConfigureAwait(false);
+
+            Assert.NotNull(result);
+            Assert.IsNotEmpty(result);
+        }
     }
 }

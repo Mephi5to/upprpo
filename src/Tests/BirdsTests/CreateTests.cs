@@ -1,7 +1,12 @@
-﻿using System.Threading;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Birds.API.Converters;
 using Birds.ClientModels.Birds;
 using NUnit.Framework;
+using BirdBuildInfo = Birds.Models.Birds.BirdBuildInfo;
 
 namespace Tests.BirdsTests
 {
@@ -12,52 +17,49 @@ namespace Tests.BirdsTests
         [TestCaseSource(typeof(TestBase), nameof(TestBase.CorrectBirdsDataSource))]
         public async Task CreateTestAsync(BatchBirdsBuildInfo batchBirdsBuildInfo)
         {
-            var result = await this.BirdsApiClient.CreateBatchBirdsAsync(batchBirdsBuildInfo, CancellationToken.None).ConfigureAwait(false);
+            var result = await this.BirdsApiClient.CreateBatchBirdsAsync(batchBirdsBuildInfo, CancellationToken.None)
+                .ConfigureAwait(false);
 
             Assert.NotNull(result);
             Assert.IsNotEmpty(result.Birds);
         }
+        
+        [Test]
+        [TestCaseSource(typeof(TestBase), nameof(TestBase.CorrectBirdsDataSource))]
+        public async Task CreateWithRepoTestAsync(BatchBirdsBuildInfo batchBirdsBuildInfo)
+        {
+            var modelBatchBuildInfo = batchBirdsBuildInfo.Items.Select(BirdsConverter.Convert).ToList();
+            var result = await this.BirdsRepository.CreateBatchAsync(modelBatchBuildInfo, CancellationToken.None)
+                .ConfigureAwait(false);
 
-        // [Test]
-        // public void CreateByNullTest()
-        // {
-        //     AsyncTestDelegate asyncDelegate = async () => await this.RequestRepository.CreateAsync(null).ConfigureAwait(false);
-        //     Assert.ThrowsAsync<ArgumentNullException>(asyncDelegate);
-        // }
-        //
-        // [Test]
-        // public void CreateByUnknownRequestTypeTest()
-        // {
-        //     var requestData = new TestRequestData { OrganizationName = "test" };
-        //     var serviceName = "testservice";
-        //     var creationInfo = new RequestCreationInfo(Guid.NewGuid(), Guid.NewGuid(), RequestType.Unknown, requestData, serviceName, null, null, null);
-        //
-        //     AsyncTestDelegate asyncDelegate = async () => await this.RequestRepository.CreateAsync(creationInfo).ConfigureAwait(false);
-        //     Assert.ThrowsAsync<InvalidOperationException>(asyncDelegate);
-        // }
-        //
-        // [Test]
-        // [TestCaseSource(typeof(TestBase), nameof(TestBase.RequestTypesSource))]
-        // public void CreateWithOtherDataTest(RequestType requestType)
-        // {
-        //     var requestData = new TestRequestData { OrganizationName = "test" };
-        //     var serviceName = "testservice";
-        //     var creationInfo = new RequestCreationInfo(Guid.NewGuid(), Guid.NewGuid(), requestType, requestData, serviceName, null, null, null);
-        //
-        //     AsyncTestDelegate asyncDelegate = async () => await this.RequestRepository.CreateAsync(creationInfo).ConfigureAwait(false);
-        //     Assert.ThrowsAsync<InvalidCastException>(asyncDelegate);
-        // }
-        //
-        // [Test]
-        // [TestCaseSource(typeof(TestBase), nameof(TestBase.RequestTypesSource))]
-        // public void CreateTestByCancelledTokenTest(RequestType requestType)
-        // {
-        //     var requestData = new TestRequestData { OrganizationName = "test" };
-        //     var serviceName = "testservice";
-        //     var creationInfo = new RequestCreationInfo(Guid.NewGuid(), Guid.NewGuid(), requestType, requestData, serviceName, null, null, null);
-        //
-        //     AsyncTestDelegate asyncDelegate = async () => await this.RequestRepository.CreateAsync(creationInfo, new CancellationToken(true)).ConfigureAwait(false);
-        //     Assert.ThrowsAsync<TaskCanceledException>(asyncDelegate);
-        // }
+            Assert.NotNull(result);
+            Assert.IsNotEmpty(result);
+        }
+        
+        [Test]
+        public void ThrowsArgumentNullExceptionTestAsync()
+        {
+            AsyncTestDelegate asyncDelegate = async () => await this.BirdsRepository.CreateBatchAsync(null, CancellationToken.None);
+            Assert.ThrowsAsync<ArgumentNullException>(asyncDelegate);
+        }
+        
+        [Test]
+        public async Task CreateEmptyTestAsync()
+        {
+            var modelBatchBuildInfo = new List<BirdBuildInfo>(0);
+            var result = await this.BirdsRepository.CreateBatchAsync(modelBatchBuildInfo, CancellationToken.None)
+                .ConfigureAwait(false);
+
+            Assert.NotNull(result);
+            Assert.IsEmpty(result);
+        }
+
+        [Test]
+        [TestCaseSource(typeof(TestBase), nameof(TestBase.CorrectBirdsDataSource))]
+        public void ThrowArgumentNullExceptionTestAsync(BatchBirdsBuildInfo batchBirdsBuildInfo)
+        {
+            AsyncTestDelegate asyncDelegate = async () => await this.BirdsApiClient.CreateBatchBirdsAsync(null, CancellationToken.None);
+            Assert.ThrowsAsync<ArgumentNullException>(asyncDelegate);
+        }
     }
 }

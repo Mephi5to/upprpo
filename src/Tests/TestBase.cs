@@ -30,10 +30,10 @@
         {
             new TestCaseData("5dfbbc085a63c91e7c950b8d")
         };
-
-        protected BirdsRepository BirdsRepository { get; set; }
-        protected FilesRepository FilesRepository { get; set; }
-        protected BirdsApiClient BirdsApiClient { get; set; }
+        
+        protected IBirdsRepository BirdsRepository { get; set; }
+        protected IFilesRepository FilesRepository { get; set; }
+        protected IBirdsApiClient BirdsApiClient { get; set; }
 
         [OneTimeSetUp]
         public void Initialize()
