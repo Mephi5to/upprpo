@@ -20,11 +20,13 @@ namespace Birds.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            
             services.AddSingleton<Configuration>();
             services.AddSingleton<IFilesRepository, FilesRepository>();
             services.AddSingleton<IBirdsRepository, BirdsRepository>();
             
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddCors();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -37,8 +39,9 @@ namespace Birds.API
             {
                 app.UseHsts();
             }
-
-            app.UseCors();
+            
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            
             app.UseHttpsRedirection();
             app.UseMvc();
         }
