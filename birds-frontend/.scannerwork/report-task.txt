@@ -1,0 +1,6 @@
+projectKey=BIRDSREACT
+serverUrl=http://84.237.50.237:9000
+serverVersion=7.7.0.23042
+dashboardUrl=http://84.237.50.237:9000/dashboard?id=BIRDSREACT
+ceTaskId=AW8fOg5YW2qZ7Jb2q0R2
+ceTaskUrl=http://84.237.50.237:9000/api/ce/task?id=AW8fOg5YW2qZ7Jb2q0R2

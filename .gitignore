@@ -39,3 +39,6 @@ src/API/wwwroot/
 src/API/*.csproj
 src/FilesTool/*.json
 
+**/node_modules/
+**/.idea/
+
