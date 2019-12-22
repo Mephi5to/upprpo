@@ -7,9 +7,7 @@ import Modal from './modal/modal'
 import ModalBackground from "./modal/modal_background";
 import axios from 'axios';
 import config from './config';
-
-const FILES_URL = '/api/v1/files/';
-const BIRDS_URL = `/api/v1/birds`;
+import OpenForm from "./add_bird/open_form";
 
 class App extends React.Component {
 
@@ -22,10 +20,15 @@ class App extends React.Component {
         window.scrollTo(0, -100);
         return <div>
             <Body
+                enabled={this.state.bodyEnabled}
                 birdsListProps={this.state.birdsList}
                 setSelectedBirdFunc={this.setSelectedBird}
                 setModalIsOpenFunc={this.setModalIsOpen}>
             </Body>
+            <OpenForm
+                enabled={this.state.openFormEnabled}
+                openFormFunc={this.openForm}>
+            </OpenForm>
             <Modal
                 isOpen={this.state.modalIsOpen}
                 onClose={() => this.setState({
@@ -45,7 +48,7 @@ class App extends React.Component {
     componentDidMount() {
         axios({
             method: 'get',
-            url: config.apiUrl + BIRDS_URL,
+            url: config.apiUrl + config.birdsUrl,
             responseType: 'json'
         })
             .then(res => {
@@ -58,12 +61,11 @@ class App extends React.Component {
                         id: bird_from_api.id,
                         name: bird_from_api.name,
                         description: bird_from_api.description,
-                        imageUrl: FILES_URL + bird_from_api.imageFileId,
-                        audioUrl: FILES_URL + bird_from_api.audioField
+                        imageUrl: config.filesUrl + bird_from_api.imageFileId,
+                        audioUrl: config.filesUrl + bird_from_api.audioField
                     };
                     newBirdsList.push(bird);
                 }
-
 
                 this.setState({
                     birdsList: newBirdsList
@@ -84,9 +86,31 @@ class App extends React.Component {
             selectedBird: bird
         })
     };
+
+    setBodyEnabled = (value) => {
+        this.setState({
+            bodyEnabled: value
+        })
+    };
+
+    setOpenFormEnabled = (value) => {
+        this.setState({
+            openFormEnabled: value
+        })
+    };
+
+    openForm = () => {
+        this.setOpenFormEnabled(false);
+        this.setBodyEnabled(false);
+    };
 }
 
 const Body = (props) => {
+
+    if (!props.enabled) {
+        return null;
+    }
+
     return <div>
         {props.birdsListProps.map((bird) =>
             <Item
@@ -95,7 +119,7 @@ const Body = (props) => {
                 setModalIsOpenFunc={props.setModalIsOpenFunc}>
             </Item>)
         }
-    </div>
+    </div>;
 };
 
 

@@ -24,7 +24,7 @@ const ItemHeader = (props) => {
 
 const ItemImage = (props) => {
     return <img className="image" src={props.imageUrl}/>
-}
+};
 
 const ItemAudio = (props) => {
     return <div className="audio_item">
@@ -32,6 +32,6 @@ const ItemAudio = (props) => {
             <source src={props.audioUrl}/>
         </audio>
     </div>
-}
+};
 
 export default Item;
