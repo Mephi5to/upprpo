@@ -37,7 +37,8 @@ namespace Birds.API
             {
                 app.UseHsts();
             }
-            
+
+            app.UseCors();
             app.UseHttpsRedirection();
             app.UseMvc();
         }
