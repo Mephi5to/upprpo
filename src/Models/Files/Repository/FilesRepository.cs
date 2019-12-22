@@ -10,7 +10,7 @@ namespace Birds.Models.Files.Repository
     public sealed class FilesRepository : IFilesRepository
     {
         private readonly IGridFSBucket files;
-
+        
         public FilesRepository(Configuration config)
         {
             var client = new MongoClient(config.GetConnectionString("BirdsDb"));
@@ -45,14 +45,6 @@ namespace Birds.Models.Files.Repository
             var file = await files.DownloadAsBytesAsync(objectId, null, token).ConfigureAwait(false);
             
             return file;
-        }
-
-        public async Task RemoveAsync(string id, CancellationToken token)
-        {
-            token.ThrowIfCancellationRequested();
-
-            var objectId = ObjectId.Parse(id);
-            await this.files.DeleteAsync(objectId, token).ConfigureAwait(false);
         }
     }
 }

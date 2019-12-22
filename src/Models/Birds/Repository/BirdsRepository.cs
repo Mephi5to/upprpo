@@ -10,7 +10,7 @@ namespace Birds.Models.Birds.Repository
 {
     public sealed class BirdsRepository : IBirdsRepository
     {
-        private readonly IMongoCollection<Bird> birds;
+        public readonly IMongoCollection<Bird> birds;
 
         public BirdsRepository(Configuration config)
         {
@@ -87,13 +87,6 @@ namespace Birds.Models.Birds.Repository
             }
             
             return bird;
-        }
-
-        public async Task RemoveAsync(string id, CancellationToken token)
-        {
-            token.ThrowIfCancellationRequested();
-
-            await this.birds.DeleteOneAsync(it => it.Id == id, token).ConfigureAwait(false);
         }
     }
 }

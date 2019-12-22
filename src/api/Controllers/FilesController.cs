@@ -26,7 +26,7 @@ namespace Birds.API.Controllers
             
             if (creationInfo == null)
             {
-                throw new ArgumentNullException(nameof(creationInfo));
+                return BadRequest($"creationInfo cannot be null");
             }
 
             var fileId = await filesRepository.CreateAsync(creationInfo.Data, creationInfo.Name, token).ConfigureAwait(false);

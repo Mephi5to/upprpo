@@ -8,7 +8,5 @@ namespace Birds.Models.Files.Repository
         Task<string> CreateAsync(byte[] data, string fileName, CancellationToken token);
 
         Task<byte[]> GetAsync(string id, CancellationToken token);
-
-        Task RemoveAsync(string id, CancellationToken token);
     }
 }
