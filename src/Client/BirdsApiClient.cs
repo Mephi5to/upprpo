@@ -83,7 +83,7 @@ namespace Client
             token.ThrowIfCancellationRequested();
 
             var content = JsonConvert.SerializeObject(creationInfo);
-            var requestContent = new StringContent(content, null, MediaTypeNames.Application.Json);
+            var requestContent = new StringContent(content, Encoding.UTF8, MediaTypeNames.Application.Json);
             var requestUri = $"{LocalUrl}/api/v1/files";
             var createResult = await httpClient.PostAsync(requestUri, requestContent, token).ConfigureAwait(false);
             createResult.EnsureSuccessStatusCode();
