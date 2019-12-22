@@ -147,7 +147,7 @@ body {
 }
 
 .openFormTitle {
-    color: #2C2921;
+    color: #47242c;
     font-size: 22px;
     font-family: var(--DEFAULT_FONT);
     font-weight: 400;
@@ -156,4 +156,66 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
+}
+
+.addBirdForm {
+    background-color: #FFFAFA;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+    position: relative;
+    width: 800px;
+    height: 900px;
+    margin-top: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+.addBirdFormButtons {
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    horiz-align: right;
+    width: 420px;
+    height: 100px;
+}
+
+.formButton {
+    float: left;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+    background-color: #f0efe6;
+    margin-top: 10px;
+    margin-left: 35px;
+    width: 150px;
+    height: 60px;
+    font-size: 23px;
+    font-family: var(--DEFAULT_FONT);
+    font-weight: 400;
+    color: #47242c;
+    /*margin-top: 20px;*/
+    text-align: center;
+    align-content: center;
+    text-align: center;
+    /*position: fixed;*/
+    vertical-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+.formButton:hover {
+    cursor: pointer;
+}
+
+.buttonTextCancel {
+    position:absolute;
+    bottom: 47px;
+    left: 67px;
+}
+
+.buttonTextCreate {
+    position:absolute;
+    bottom: 47px;
+    left: 244px;
 }

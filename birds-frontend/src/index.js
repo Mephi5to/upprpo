@@ -8,6 +8,7 @@ import ModalBackground from "./modal/modal_background";
 import axios from 'axios';
 import config from './config';
 import OpenForm from "./add_bird/open_form";
+import AddBirdForm from "./add_bird/add_bird_form";
 
 class App extends React.Component {
 
@@ -26,9 +27,13 @@ class App extends React.Component {
                 setModalIsOpenFunc={this.setModalIsOpen}>
             </Body>
             <OpenForm
-                enabled={this.state.openFormEnabled}
+                enabled={this.state.openFormButtonEnabled}
                 openFormFunc={this.openForm}>
             </OpenForm>
+            <AddBirdForm
+                enabled={this.state.addBirdFormEnabled}
+                closeFormFunc={this.closeAddBirdForm}>
+            </AddBirdForm>
             <Modal
                 isOpen={this.state.modalIsOpen}
                 onClose={() => this.setState({
@@ -95,13 +100,26 @@ class App extends React.Component {
 
     setOpenFormEnabled = (value) => {
         this.setState({
-            openFormEnabled: value
+            openFormButtonEnabled: value
         })
+    };
+
+    setAddBirdFormEnabled = (value) => {
+        this.setState({
+            addBirdFormEnabled: value
+        })
+    };
+
+    closeAddBirdForm = () => {
+        this.setAddBirdFormEnabled(false);
+        this.setBodyEnabled(true);
+        this.setOpenFormEnabled(true);
     };
 
     openForm = () => {
         this.setOpenFormEnabled(false);
         this.setBodyEnabled(false);
+        this.setAddBirdFormEnabled(true);
     };
 }
 

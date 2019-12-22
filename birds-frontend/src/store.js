@@ -1,7 +1,8 @@
 let store = {
 	state: {
         bodyEnabled: true,
-        openFormEnabled: true,
+        openFormButtonEnabled: true,
+        addBirdFormEnabled: false,
         selectedBird: null,
 		birdsList: [
 			{
