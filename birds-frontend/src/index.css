@@ -287,3 +287,10 @@ body {
     width: 290px;
     height: 25px;
 }
+
+.warning {
+    position: absolute;
+    margin-top: 275px;
+    font-size: 17px;
+    color: red;
+}
