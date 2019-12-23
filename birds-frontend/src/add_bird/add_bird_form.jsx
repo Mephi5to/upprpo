@@ -20,9 +20,27 @@ class AddBirdForm extends React.Component {
 
                 <div className="formWrapper">
                     <div>
-                        <label for="name">Название</label>
+                        <label htmlFor="name">Название*</label>
                         <input className="nameInput"
                                type="text"
+                               name="name" required/>
+                    </div>
+                    <div className="birdDescription">
+                        <label className="descriptionLabel"
+                               htmlFor="name">Описание*</label>
+                        <textarea className="descriptionInput"
+                                  name="name" required/>
+                    </div>
+                    <div className="birdImageInput">
+                        <label htmlFor="name">Изображение*</label>
+                        <input className="fileInput"
+                               type="file"
+                               name="name" required/>
+                    </div>
+                    <div className="birdAudioInput">
+                        <label htmlFor="name">Запись голоса*</label>
+                        <input className="fileInput"
+                               type="file"
                                name="name" required/>
                     </div>
                 </div>

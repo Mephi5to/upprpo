@@ -233,7 +233,6 @@ body {
 
 .formWrapper {
     position: absolute;
-    /*background-color: #f0efe6;*/
     color: #381c23;
     font-size: 19px;
     margin-top: 120px;
@@ -245,5 +244,46 @@ body {
     margin-left: 18px;
     padding-left: 2px;
     width: 590px;
+    height: 25px;
+}
+
+.birdDescription {
+    /*background-color: #f0efe6;*/
+    margin-top: 30px;
+    width: 710px;
+    height: 300px;
+}
+
+.descriptionLabel {
+    position: absolute;
+    margin-top: 0;
+}
+
+.descriptionInput {
+    font-size: 16px;
+    margin-left: 113px;
+    width: 590px;
+    height: 365px;
+    resize: none;
+}
+
+.birdImageInput {
+    position: absolute;
+    width: 200px !important;
+    height: 30px;
+    margin-top: 100px;
+}
+
+.birdAudioInput {
+    position: absolute;
+    width: 200px !important;
+    height: 30px;
+    margin-top: 190px;
+}
+
+.fileInput {
+    font-size: 16px;
+    margin-top: 10px;
+    width: 290px;
     height: 25px;
 }
