@@ -14,6 +14,19 @@ class AddBirdForm extends React.Component {
 
         return (
             <div className="addBirdForm">
+                <div className="addBirtFormTitle">
+                    Добавление новой птицы
+                </div>
+
+                <div className="formWrapper">
+                    <div>
+                        <label for="name">Название</label>
+                        <input className="nameInput"
+                               type="text"
+                               name="name" required/>
+                    </div>
+                </div>
+
                 <div className="addBirdFormButtons">
                     <div className="formButton"
                          onClick={() => {

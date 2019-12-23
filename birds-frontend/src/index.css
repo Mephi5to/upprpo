@@ -147,7 +147,7 @@ body {
 }
 
 .openFormTitle {
-    color: #47242c;
+    color: #381c23;
     font-size: 22px;
     font-family: var(--DEFAULT_FONT);
     font-weight: 400;
@@ -190,14 +190,11 @@ body {
     width: 150px;
     height: 60px;
     font-size: 23px;
-    font-family: var(--DEFAULT_FONT);
     font-weight: 400;
-    color: #47242c;
-    /*margin-top: 20px;*/
+    color: #381c23;
     text-align: center;
     align-content: center;
     text-align: center;
-    /*position: fixed;*/
     vertical-align: center;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -218,4 +215,35 @@ body {
     position:absolute;
     bottom: 47px;
     left: 244px;
+}
+
+.addBirtFormTitle {
+    color: #381c23;
+    font-size: 27px;
+    position: absolute;
+    height: 35px;
+    width: 600px;
+    text-align: center;
+    margin-left: 105px;
+    top: 25px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+.formWrapper {
+    position: absolute;
+    /*background-color: #f0efe6;*/
+    color: #381c23;
+    font-size: 19px;
+    margin-top: 120px;
+    margin-left: 40px;
+}
+
+.nameInput {
+    font-size: 16px;
+    margin-left: 18px;
+    padding-left: 2px;
+    width: 590px;
+    height: 25px;
 }
