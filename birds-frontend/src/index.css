@@ -17,7 +17,7 @@ body {
 }
 
 .item {
-    width: 1050px;
+    width: 800px;
     height: 110px;
     background-color: #FFFAFA;
     margin-left: auto;
@@ -35,7 +35,7 @@ body {
 }
 
 .item_body {
-    width: 900px;
+    width: 650px;
     height: 110px;
     background-color: #FFFAFA;
     margin-left: auto;
@@ -59,7 +59,7 @@ body {
 }
 
 .audio {
-    width: 900px;
+    width: 650px;
     height: 40px;
     vertical-align: bottom;
     display: inline-block;

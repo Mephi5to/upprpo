@@ -72,9 +72,9 @@ class App extends React.Component {
                     newBirdsList.push(bird);
                 }
 
-                this.setState({
-                    birdsList: newBirdsList
-                });
+                // this.setState({
+                //     birdsList: newBirdsList
+                // });
             })
             .catch(res => {
             })

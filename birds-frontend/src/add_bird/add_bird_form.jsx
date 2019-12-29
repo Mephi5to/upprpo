@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+import config from "../config";
 
 class AddBirdForm extends React.Component {
 
@@ -77,18 +79,41 @@ class AddBirdForm extends React.Component {
 
         let name = document.getElementById("name").value;
         let description = document.getElementById("descr").value;
-        let image = document.getElementById("img").value;
-        let audio = document.getElementById("audio").value;
+        let image = document.getElementById("img").files;
+        let audio = document.getElementById("audio").files;
 
         if (!name || name.length < 1 || !description || description.length < 1 || !image || !audio) {
             this.setWarningEnabled(true);
             return null;
         }
 
-        debugger;
+        let imageElement = image[0];
 
-        // todo api call
-        // todo фильтрануть файлы по типу в форме
+        var reader = new FileReader();
+
+        reader.readAsText(imageElement);
+
+        reader.onload = (event) => {
+
+            debugger;
+
+            axios({
+                method: 'post',
+                url: config.apiUrl + config.birdsUrl,
+                responseType: 'json',
+                data: {
+                    name: name,
+                    data: event.target.result
+                }
+            })
+                .then(res => {
+
+                    debugger;
+                })
+                .catch(res => {
+                    debugger;
+                })
+        };
 
     }
 
