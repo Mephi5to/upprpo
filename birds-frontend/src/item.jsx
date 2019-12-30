@@ -41,7 +41,6 @@ class Item extends React.Component {
     render() {
         return <div onClick={() => {
             this.props.setSelectedBirdFunc(this.props.bird);
-            this.props.setModalIsOpenFunc(true);
         }} className="item">
             <div className="horizont_float">
                 <ItemImage imageUrl={this.state.imageUrl}></ItemImage>
