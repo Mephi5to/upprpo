@@ -92,17 +92,14 @@ class App extends React.Component {
             method: 'get',
             url: config.apiUrl + config.filesUrl + bird.imageUrl,
             responseType: 'json'
-        })
-            .then(res => {
-                this.setState({
-                    selectedBirdImage: 'data:image/gif;base64,' + res.data.data
-                })
-            })
-            .catch(res => {
+        }).then(res => {
+
+            this.setState({
+                selectedBird: bird,
+                selectedBirdImage: 'data:image/gif;base64,' + res.data.data
             });
 
-        this.setState({
-            selectedBird: bird
+            this.setModalIsOpen(true);
         })
     };
 
