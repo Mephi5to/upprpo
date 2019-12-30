@@ -17,7 +17,7 @@ body {
 }
 
 .item {
-    width: 1050px;
+    width: 800px;
     height: 110px;
     background-color: #FFFAFA;
     margin-left: auto;
@@ -35,7 +35,7 @@ body {
 }
 
 .item_body {
-    width: 900px;
+    width: 650px;
     height: 110px;
     background-color: #FFFAFA;
     margin-left: auto;
@@ -59,7 +59,7 @@ body {
 }
 
 .audio {
-    width: 900px;
+    width: 650px;
     height: 40px;
     vertical-align: bottom;
     display: inline-block;
@@ -129,4 +129,168 @@ body {
     top: 0;
     left: 0;
     background: rgba(0, 0, 0, 0.6);
+}
+
+.openForm {
+    background-color: #FFFAFA;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+    z-index: 999;
+    position: fixed;
+    height: 60px;
+    width: 200px;
+    top: 40px;
+    right: 50px;
+}
+
+.openForm:hover {
+    cursor: pointer;
+}
+
+.openFormTitle {
+    color: #381c23;
+    font-size: 22px;
+    font-family: var(--DEFAULT_FONT);
+    font-weight: 400;
+    text-align: center;
+    margin-top: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+.addBirdForm {
+    background-color: #FFFAFA;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+    position: relative;
+    width: 800px;
+    height: 900px;
+    margin-top: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+.addBirdFormButtons {
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    horiz-align: right;
+    width: 420px;
+    height: 100px;
+}
+
+.formButton {
+    float: left;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+    background-color: #f0efe6;
+    margin-top: 10px;
+    margin-left: 35px;
+    width: 150px;
+    height: 60px;
+    font-size: 23px;
+    font-weight: 400;
+    color: #381c23;
+    text-align: center;
+    align-content: center;
+    text-align: center;
+    vertical-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+.formButton:hover {
+    cursor: pointer;
+}
+
+.buttonTextCancel {
+    position:absolute;
+    bottom: 47px;
+    left: 67px;
+}
+
+.buttonTextCreate {
+    position:absolute;
+    bottom: 47px;
+    left: 244px;
+}
+
+.addBirtFormTitle {
+    color: #381c23;
+    font-size: 27px;
+    position: absolute;
+    height: 35px;
+    width: 600px;
+    text-align: center;
+    margin-left: 105px;
+    top: 25px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+.formWrapper {
+    position: absolute;
+    color: #381c23;
+    font-size: 19px;
+    margin-top: 120px;
+    margin-left: 40px;
+}
+
+.nameInput {
+    font-size: 16px;
+    margin-left: 18px;
+    padding-left: 2px;
+    width: 590px;
+    height: 25px;
+}
+
+.birdDescription {
+    /*background-color: #f0efe6;*/
+    margin-top: 30px;
+    width: 710px;
+    height: 300px;
+}
+
+.descriptionLabel {
+    position: absolute;
+    margin-top: 0;
+}
+
+.descriptionInput {
+    font-size: 16px;
+    margin-left: 113px;
+    width: 590px;
+    height: 365px;
+    resize: none;
+}
+
+.birdImageInput {
+    position: absolute;
+    width: 200px !important;
+    height: 30px;
+    margin-top: 100px;
+}
+
+.birdAudioInput {
+    position: absolute;
+    width: 200px !important;
+    height: 30px;
+    margin-top: 190px;
+}
+
+.fileInput {
+    font-size: 16px;
+    margin-top: 10px;
+    width: 290px;
+    height: 25px;
+}
+
+.warning {
+    position: absolute;
+    margin-top: 275px;
+    font-size: 17px;
+    color: red;
 }

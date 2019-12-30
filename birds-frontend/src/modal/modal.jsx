@@ -17,7 +17,7 @@ class Modal extends React.Component {
         return (
             <div className="modal">
                 <div className="modalImageWrapper">
-                    <img className="modalImage" src={bird.imageUrl}/>
+                    <img className="modalImage" src={this.props.image}/>
                 </div>
                 <h2 className="modalTitle">
                     {bird.name}

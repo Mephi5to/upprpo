@@ -7,9 +7,8 @@ import Modal from './modal/modal'
 import ModalBackground from "./modal/modal_background";
 import axios from 'axios';
 import config from './config';
-
-const FILES_URL = '/api/v1/files/';
-const BIRDS_URL = `/api/v1/birds`;
+import OpenForm from "./add_bird/open_form";
+import AddBirdForm from "./add_bird/add_bird_form";
 
 class App extends React.Component {
 
@@ -22,16 +21,26 @@ class App extends React.Component {
         window.scrollTo(0, -100);
         return <div>
             <Body
+                enabled={this.state.bodyEnabled}
                 birdsListProps={this.state.birdsList}
                 setSelectedBirdFunc={this.setSelectedBird}
                 setModalIsOpenFunc={this.setModalIsOpen}>
             </Body>
+            <OpenForm
+                enabled={this.state.openFormButtonEnabled}
+                openFormFunc={this.openForm}>
+            </OpenForm>
+            <AddBirdForm
+                enabled={this.state.addBirdFormEnabled}
+                closeFormFunc={this.closeAddBirdForm}>
+            </AddBirdForm>
             <Modal
                 isOpen={this.state.modalIsOpen}
                 onClose={() => this.setState({
                     modalIsOpen: false
                 })}
-                bird={this.state.selectedBird}>
+                bird={this.state.selectedBird}
+                image={this.state.selectedBirdImage}>
             </Modal>
             <ModalBackground
                 isOpen={this.state.modalIsOpen}
@@ -45,7 +54,7 @@ class App extends React.Component {
     componentDidMount() {
         axios({
             method: 'get',
-            url: config.apiUrl + BIRDS_URL,
+            url: config.apiUrl + config.birdsUrl,
             responseType: 'json'
         })
             .then(res => {
@@ -58,12 +67,11 @@ class App extends React.Component {
                         id: bird_from_api.id,
                         name: bird_from_api.name,
                         description: bird_from_api.description,
-                        imageUrl: FILES_URL + bird_from_api.imageFileId,
-                        audioUrl: FILES_URL + bird_from_api.audioField
+                        imageUrl: bird_from_api.imageFileId,
+                        audioUrl: bird_from_api.audioFileId
                     };
                     newBirdsList.push(bird);
                 }
-
 
                 this.setState({
                     birdsList: newBirdsList
@@ -80,13 +88,61 @@ class App extends React.Component {
     };
 
     setSelectedBird = (bird) => {
+        axios({
+            method: 'get',
+            url: config.apiUrl + config.filesUrl + bird.imageUrl,
+            responseType: 'json'
+        })
+            .then(res => {
+                this.setState({
+                    selectedBirdImage: 'data:image/gif;base64,' + res.data.data
+                })
+            })
+            .catch(res => {
+            });
+
         this.setState({
             selectedBird: bird
         })
     };
+
+    setBodyEnabled = (value) => {
+        this.setState({
+            bodyEnabled: value
+        })
+    };
+
+    setOpenFormEnabled = (value) => {
+        this.setState({
+            openFormButtonEnabled: value
+        })
+    };
+
+    setAddBirdFormEnabled = (value) => {
+        this.setState({
+            addBirdFormEnabled: value
+        })
+    };
+
+    closeAddBirdForm = () => {
+        this.setAddBirdFormEnabled(false);
+        this.setBodyEnabled(true);
+        this.setOpenFormEnabled(true);
+    };
+
+    openForm = () => {
+        this.setOpenFormEnabled(false);
+        this.setBodyEnabled(false);
+        this.setAddBirdFormEnabled(true);
+    };
 }
 
 const Body = (props) => {
+
+    if (!props.enabled) {
+        return null;
+    }
+
     return <div>
         {props.birdsListProps.map((bird) =>
             <Item
@@ -95,7 +151,7 @@ const Body = (props) => {
                 setModalIsOpenFunc={props.setModalIsOpenFunc}>
             </Item>)
         }
-    </div>
+    </div>;
 };
 
 
