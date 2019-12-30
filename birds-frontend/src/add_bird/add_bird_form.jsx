@@ -88,6 +88,7 @@ class AddBirdForm extends React.Component {
         }
 
         let imageElement = image[0];
+        let audioElement = audio[0];
 
         var reader = new FileReader();
 
@@ -95,32 +96,78 @@ class AddBirdForm extends React.Component {
 
         reader.onload = (event) => {
 
+            let result = event.target.result;
+            let startWith = result.indexOf('base64,') + 7;
+
+            let data = result.substring(startWith);
 
             axios({
                 method: 'post',
                 url: config.apiUrl + config.filesUrl,
                 responseType: 'json',
                 data: {
-                    Name: name,
-                    Data: event.target.result
+                    name: name + '_image',
+                    data: data
+                }
+            }).then(res => {
+
+                this.setImageId(res.data.id);
+
+                reader.readAsDataURL(audioElement);
+                reader.onload = (event) => {
+
+                    let result = event.target.result;
+                    let startWith = result.indexOf('base64,') + 7;
+
+                    let data = result.substring(startWith);
+
+                    axios({
+                        method: 'post',
+                        url: config.apiUrl + config.filesUrl,
+                        responseType: 'json',
+                        data: {
+                            name: name + '_audio',
+                            data: data
+                        }
+                    }).then(res_1 => {
+
+                        axios({
+                            method: 'post',
+                            url: config.apiUrl + config.birdsUrl,
+                            responseType: 'json',
+                            headers: {'Content-Type': 'application/json'},
+                            data: {
+                                items: [
+                                    {
+                                        name: name,
+                                        description: description,
+                                        imageFileId: this.state.imageId,
+                                        audioFileId: res_1.data.id
+                                    }
+                                ]
+                            }
+                        }).then(res_2 => {
+                            this.props.closeFormFunc();
+                        }).catch(res => {
+                            this.props.closeFormFunc();
+                        })
+                    })
                 }
             })
-                .then(res => {
-
-                    debugger;
-                })
-                .catch(res => {
-                    debugger;
-                })
         };
-
     }
 
     setWarningEnabled = (value) => {
         this.setState({
             warningEnabled: value
         })
-    }
+    };
+
+    setImageId = (value) => {
+        this.setState({
+            imageId: value
+        })
+    };
 }
 
 const Warning = (props) => {
