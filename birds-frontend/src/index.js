@@ -39,7 +39,8 @@ class App extends React.Component {
                 onClose={() => this.setState({
                     modalIsOpen: false
                 })}
-                bird={this.state.selectedBird}>
+                bird={this.state.selectedBird}
+                image={this.state.selectedBirdImage}>
             </Modal>
             <ModalBackground
                 isOpen={this.state.modalIsOpen}
@@ -66,15 +67,15 @@ class App extends React.Component {
                         id: bird_from_api.id,
                         name: bird_from_api.name,
                         description: bird_from_api.description,
-                        imageUrl: config.filesUrl + bird_from_api.imageFileId,
-                        audioUrl: config.filesUrl + bird_from_api.audioField
+                        imageUrl: bird_from_api.imageFileId,
+                        audioUrl: bird_from_api.audioFileId
                     };
                     newBirdsList.push(bird);
                 }
 
-                // this.setState({
-                //     birdsList: newBirdsList
-                // });
+                this.setState({
+                    birdsList: newBirdsList
+                });
             })
             .catch(res => {
             })
@@ -87,6 +88,19 @@ class App extends React.Component {
     };
 
     setSelectedBird = (bird) => {
+        axios({
+            method: 'get',
+            url: config.apiUrl + config.filesUrl + bird.imageUrl,
+            responseType: 'json'
+        })
+            .then(res => {
+                this.setState({
+                    selectedBirdImage: 'data:image/gif;base64,' + res.data.data
+                })
+            })
+            .catch(res => {
+            });
+
         this.setState({
             selectedBird: bird
         })

@@ -91,19 +91,18 @@ class AddBirdForm extends React.Component {
 
         var reader = new FileReader();
 
-        reader.readAsText(imageElement);
+        reader.readAsDataURL(imageElement);
 
         reader.onload = (event) => {
 
-            debugger;
 
             axios({
                 method: 'post',
-                url: config.apiUrl + config.birdsUrl,
+                url: config.apiUrl + config.filesUrl,
                 responseType: 'json',
                 data: {
-                    name: name,
-                    data: event.target.result
+                    Name: name,
+                    Data: event.target.result
                 }
             })
                 .then(res => {
